@@ -2,12 +2,16 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Webpack</title>
-<!--  <link rel="stylesheet" href="./style.css">-->
-  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css %>">
+  <title>NewExplorer</title>
+  <!--  <link rel="stylesheet" href="./style.css">-->
+  <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css %>">
 </head>
 <body>
-<h1>Hello world again</h1>
+<div class="root">
+<header class="header root__section">
+
+</header>
+</div>
 <!--<script src="./main.js"></script>-->
 <script src="<%= htmlWebpackPlugin.files.js %>"></script>
 </body>
