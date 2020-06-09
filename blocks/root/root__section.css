@@ -1,6 +1,7 @@
 .root__section {
   max-width: 1440px;
   padding: 80px 7.22%;
+  box-sizing: border-box;
 
   margin: auto;
 }

@@ -1,0 +1,16 @@
+@import url(./search__container.css);
+@import url(./search__title.css);
+@import url(./search__description.css);
+@import url(./search__form.css);
+@import url(./search__input.css);
+@import url(./search__button.css);
+
+
+.search {
+  /*padding-bottom: 40%;*/
+  background-image: url(../../images/search-bg.jpg);
+  background-size: cover;
+  background-position: center;
+
+  color: var(--color-main-white);
+}
