@@ -1,6 +1,5 @@
 import './style.css';
 
-const numbers = [2, 3, 5];
-const doubledNumbers = numbers.map(number => number * 2); // Стрелочная функция. Не запнётся ли на ней Internet Explorer
+import Menu from '../scripts/menu';
 
-console.log(doubledNumbers); // 4, 6, 10
+new Menu(document.querySelector('.menu'));

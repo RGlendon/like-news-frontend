@@ -1,0 +1,11 @@
+.menu__link {
+  text-decoration: none;
+  color: inherit;
+  margin-right: 32px;
+}
+
+@media all and (max-width: 16px) {
+  .menu__link {
+    margin-right: 16px;
+  }
+}
