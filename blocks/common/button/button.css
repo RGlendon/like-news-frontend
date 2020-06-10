@@ -26,12 +26,9 @@
 
 .button_active {
   background: var(--color-darkblue);
-  background: black;
 }
-
 .button_active:hover {
   background: var(--color-darkblue);
-  /*background: black;*/
 }
 
 .button:disabled {
