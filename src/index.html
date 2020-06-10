@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Webpack</title>
   <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css %>">
 </head>
@@ -50,11 +51,26 @@
         <input type="text" name="search" class="search__input search__input_type_name"
                placeholder="Введите тему новости" required>
         <button class="button search__button" name='btn' disabled>Искать</button>
-<!--        <button class="button search__button" name='btn'>Искать</button>-->
+        <!--        <button class="button search__button" name='btn'>Искать</button>-->
       </form>
     </div>
   </section>
-  <button class="button" name='btn'>Искать</button>
+  <section class="author root__section">
+    <div class="author__container">
+      <div class="author__avatar-wrapper">
+            <div class="author__avatar"></div>
+      </div>
+      <div class="author__info">
+        <h2 class="author__about">Об авторе</h2>
+        <p class="author__description">Это блок с описанием автора проекта. Здесь следует указать, как вас зовут,
+          чем вы занимаетесь, какими технологиями разработки владеете.
+        </p>
+        <p class="author__description">Также можно рассказать о процессе обучения в Практикуме, чему вы тут
+          научились, и чем можете помочь потенциальным заказчикам.
+        </p>
+      </div>
+    </div>
+  </section>
 
 </div>
 <!--<script src="./main.js"></script>-->

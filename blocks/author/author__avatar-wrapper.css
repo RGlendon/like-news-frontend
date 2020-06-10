@@ -1,0 +1,19 @@
+.author__avatar-wrapper {
+  width: 37.66%;
+}
+
+
+@media all and (max-width: 768px) {
+  .author__avatar-wrapper {
+    width: 33.72%;
+  }
+}
+
+/*@media all and (max-width: 320px) {*/
+@media all and (max-width: 650px) {
+  .author__avatar-wrapper {
+    width: 100%;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}

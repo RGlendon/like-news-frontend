@@ -7,6 +7,12 @@
 }
 
 
+@media all and (min-width: 1441px) {
+  .root__section {
+    padding: 0 104px;
+  }
+}
+
 @media all and (max-width: 768px) {
   .root__section {
     padding: 0 5.2%;
@@ -15,6 +21,6 @@
 
 @media all and (max-width: 320px) {
   .root__section {
-    padding: 0 5%;
+    padding: 0 16px;
   }
 }

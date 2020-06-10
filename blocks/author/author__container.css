@@ -1,0 +1,11 @@
+.author__container {
+  display: flex;
+  color: var(--color-main-primary);
+}
+
+
+@media all and (max-width: 650px) {
+  .author__container {
+    flex-wrap: wrap;
+  }
+}

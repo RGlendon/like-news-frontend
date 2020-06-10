@@ -34,4 +34,5 @@
 .button:disabled {
   background: var(--color-gray-locked);
   color: var(--color-gray-text);
+  cursor: default;
 }
