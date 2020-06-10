@@ -22,3 +22,18 @@
 
   color: var(--color-gray-text);
 }
+
+
+@media all and (max-width: 768px) {
+  .search__input {
+    height: 56px;
+    padding: 0 38% 0 5.5%;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .search__input {
+    height: 56px;
+    padding: 0 5.5%;
+  }
+}

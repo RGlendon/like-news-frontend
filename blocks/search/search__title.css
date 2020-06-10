@@ -7,3 +7,10 @@
 
   width: 5.7em;
 }
+
+@media all and (max-width: 768px) {
+  .search__title {
+    font-size: 36px;
+    line-height: 40px;
+  }
+}

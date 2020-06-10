@@ -7,3 +7,11 @@
   margin-top: 32px;
   width: 90%;
 }
+
+
+@media all and (max-width: 768px) {
+  .search__description {
+    margin-top: 16px;
+    width: 100%;
+  }
+}
