@@ -1,0 +1,20 @@
+.header__menu-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  fill: var(--color-main-white);
+}
+
+.header__menu-icon_open {
+  display: none;
+}
+.header__menu-icon_close {
+  display: none;
+}
+
+
+@media all and (max-width: 650px) {
+  .header__menu-icon_open {
+    display: block;
+  }
+}

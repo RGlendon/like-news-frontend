@@ -4,8 +4,8 @@
   margin-right: 32px;
 }
 
-@media all and (max-width: 16px) {
+@media all and (max-width: 768px) {
   .menu__link {
-    margin-right: 16px;
+    margin-right: 18px;
   }
 }

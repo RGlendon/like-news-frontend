@@ -3,6 +3,32 @@
 .menu {
   display: flex;
   align-items: center;
+
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
 }
 
+@media all and (max-width: 768px) {
+  .menu {
+    font-size: 16px;
+  }
+}
+
+@media all and (max-width: 650px) {
+  .menu {
+    font-size: 18px;
+    line-height: 56px;
+
+  }
+
+}
+
+@media all and (max-width: 320px) {
+  .menu {
+    font-size: 18px;
+    line-height: 56px;
+  }
+}
 
