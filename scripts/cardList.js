@@ -1,12 +1,19 @@
+import savedArticles from "./savedArticles";
+import initialCards from "./initialCards";
+
 export default class CardList {
   constructor(container, card) {
     this.container = container;
     this.card = card;
     this.numberOfClickMore = 0;
+
+    // слушатель на весь контейнер
+    this.container.addEventListener('click', this.eventHandler.bind(this), true);
   }
 
-  addCard(card) {
-    const newCard = this.card.create(card);
+  addCard(card, opt) {
+    const newCard = this.card.create(card, opt);
+    newCard.dataset.id = card._id;
     this.container.append(newCard);
 
     const infoContainer = newCard.querySelector('.result__info-container');
@@ -52,9 +59,27 @@ export default class CardList {
     const to = (opt === 'more') ? from + step : first;
 
     initialCards.forEach((card, index) => {
-      if (index >= from && index < to) this.addCard(card);
+      if (index >= from && index < to) this.addCard(card, opt);
     });
 
     if (to >= initialCards.length && btn) btn.setAttribute('disabled', true);
   }
+
+  eventHandler(event) {
+    if (event.target.classList.contains('result__bookmark') || event.target.matches('svg') || event.target.matches('path')) {
+      let button = event.target.closest('.result__bookmark');
+      let idCard = event.target.closest('.result__card').dataset.id;
+      if (!button.matches('.result__bookmark_marked')) {
+        this.card.toggleLike(button);
+        savedArticles.push(initialCards.find(item => item._id === +idCard));
+        // console.dir(savedArticles);
+        // console.dir(initialCards)
+      } else {
+        this.card.toggleLike(button);
+        savedArticles.splice(savedArticles.indexOf(initialCards.find(item => item._id === +idCard)), 1);
+        // console.dir(savedArticles);
+      }
+    }
+  }
+
 }

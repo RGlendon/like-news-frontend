@@ -6,6 +6,7 @@
 
 const initialCards = [
   {
+    _id: 1,
     urlToImage: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
     publishedAt: '1 августа, 2019',
     title: 'Национальное достояние – парки',
@@ -14,6 +15,7 @@ const initialCards = [
     'source.name': 'Лента.ру',
   },
   {
+    _id: 2,
     urlToImage: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
     publishedAt: '2 августа, 2019',
     title: 'Лесные огоньки: история одной фотографии',
@@ -22,6 +24,7 @@ const initialCards = [
     'source.name': 'Медуза',
   },
   {
+    _id: 3,
     urlToImage: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
     publishedAt: '23 августа, 2019',
     title: '«Первозданнаяваываыва тайга»: новый фотопроект Игоря Шпиленка',
@@ -31,6 +34,7 @@ const initialCards = [
     'source.name': 'Медуза',
   },
   {
+    _id: 4,
     urlToImage: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
     publishedAt: '2 августа, 2019',
     title: 'Национальное достояние – парки',
@@ -39,6 +43,7 @@ const initialCards = [
     'source.name': 'Лента.ру',
   },
   {
+    _id: 5,
     urlToImage: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
     publishedAt: '2 августа, 2019',
     title: 'Лесные огоньки: история одной фотографии',
@@ -47,6 +52,7 @@ const initialCards = [
     'source.name': 'Медуза',
   },
   {
+    _id: 6,
     urlToImage: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
     publishedAt: '2 августа, 2019',
     title: '«Первозданная тайга»: новый фотопроект Игоря Шпиленка',
@@ -56,6 +62,7 @@ const initialCards = [
     'source.name': 'Медуза',
   },
   {
+    _id: 7,
     urlToImage: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
     publishedAt: '2 августа, 2019',
     title: '«Первозданная тайга»: новый фотопроект Игоря Шпиленка',
@@ -65,6 +72,7 @@ const initialCards = [
     'source.name': 'Медуза',
   },
   {
+    _id: 8,
     urlToImage: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
     publishedAt: '2 августа, 2019',
     title: '«Первозданная тайга»: новый фотопроект Игоря Шпиленка',
