@@ -1,0 +1,22 @@
+.result__info-container {
+  padding: 20px 24px 24px;
+  box-sizing: border-box;
+  height: 304px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media all and (max-width: 1440px) {
+  .result__info-container {
+    height: calc(270px + (304 - 270)*(100vw - 768px)/(1440 - 768));
+  }
+}
+
+@media all and (max-width: 768px) {
+  .result__info-container {
+    padding: 16px;
+    height: calc(244px + (270 - 244)*(100vw - 320px)/(768 - 320));
+  }
+}

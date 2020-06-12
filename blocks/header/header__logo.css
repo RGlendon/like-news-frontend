@@ -1,0 +1,11 @@
+@media all and (max-width: 768px) {
+  .header__logo {
+    margin-right: 40px;
+  }
+}
+
+@media all and (max-width: 650px) {
+  .header__logo {
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,25 @@
+.result__bookmark {
+  width: 40px;
+  height: 40px;
+  background: var(--color-main-white);
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding-top: 5px;
+
+
+
+  stroke: var(--color-gray-text);
+  fill: none;
+  transition: all .3s linear;
+}
+
+.result__bookmark:hover {
+  stroke: var(--color-main-primary);
+}
+
+.result__bookmark_marked {
+  stroke: var(--color-blue);
+  fill: var(--color-blue);
+}

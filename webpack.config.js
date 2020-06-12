@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
+
 module.exports = {                                    // module.exports — это синтаксис экспорта в Node.js
   entry: {main: './src/index.js'},                    // указали первое место куда заглянет webpack — файл index.js в папке src
   output: {                                           // указали в какой файл будет собирться весь js и дали ему имя
@@ -34,7 +35,7 @@ module.exports = {                                    // module.exports — эт
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'style.[contenthash].css'
+      filename: 'style.[contenthash].css',
     }),
     new OptimizeCssAssetsPlugin({                     // подключите плагин после MiniCssExtractPlugin
       assetNameRegExp: /\.css$/g,
@@ -42,7 +43,7 @@ module.exports = {                                    // module.exports — эт
       cssProcessorPluginOptions: {
         preset: ['default'],
       },
-      canPrint: true
+      canPrint: true,
     }),
     new HtmlWebpackPlugin({                           // настроили плагин
       // Означает, что:
@@ -51,6 +52,6 @@ module.exports = {                                    // module.exports — эт
       template: './src/index.html',                   // откуда брать образец для сравнения с текущим видом проекта
       filename: 'index.html'                          // имя выходного файла, то есть того, что окажется в папке dist после сборки
     }),
-    new WebpackMd5Hash()
-  ]
+    new WebpackMd5Hash(),
+  ],
 };
