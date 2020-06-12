@@ -1,4 +1,4 @@
-.header__overlay {
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -8,5 +8,9 @@
   opacity: 0.5;
 
   display: none;
-  z-index: -1;
+  z-index: 1;
+}
+
+.overlay_is-opened {
+  display: block;
 }

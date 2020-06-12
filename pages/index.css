@@ -6,3 +6,7 @@
 @import url(../blocks/common/button/button.css);
 @import url(../blocks/author/author.css);
 @import url(../blocks/footer/footer.css);
+@import url(../blocks/result/result.css);
+
+
+@import url(../blocks/preloader/preloader.css);
