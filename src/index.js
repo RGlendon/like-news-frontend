@@ -3,21 +3,28 @@ import './style.css';
 import Menu from '../scripts/menu';
 import Card from '../scripts/card';
 import CardList from '../scripts/cardList';
+import Popup from "../scripts/popup";
 import initialCards from '../scripts/initialCards';
 import savedArticles from "../scripts/savedArticles";
 
 const cardContainer = document.querySelector('.result__cards');
+const overlay = document.querySelector('.overlay');
 
 const card = new Card();
 const cardList = new CardList(cardContainer, card);
+const popup = new Popup(document.querySelector('.popup'), overlay);
 
-
-new Menu(document.querySelector('.menu'));
+new Menu(document.querySelector('.menu'), overlay);
 
 cardList.render(initialCards);
-// cardList.render();
+
 
 document.addEventListener('click', (e) => {
+  if (e.target.matches('.header__auth')) {
+    popup.open();
+    popup.openAuth();
+  }
+
   if (e.target.matches('.button')) {
     e.target.classList.add('button_active');
     setTimeout(() => e.target.classList.remove('button_active'), 200);

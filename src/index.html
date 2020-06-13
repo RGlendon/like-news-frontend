@@ -9,14 +9,69 @@
 </head>
 <body>
 <div class="root">
-  <!--    <header class="root__section header header_white">-->
+
   <div class="overlay"></div>
+  <div class="popup">
+    <img src="<%=require('../images/close.svg').default%>" alt="" class="popup__close">
+    <div class="popup__content popup__content-auth">
+      <h3 class="popup__title">Вход</h3>
+      <form class="popup__form" name="auth" novalidate>
+        <div class="popup__input-container">
+          <label for="email" class="popup__label">Email</label>
+          <input id="email" type="text" name="email" class="popup__input popup__input_type_email"
+                 placeholder="Введите почту" required>
+          <span id="error-email" class="popup__error-message"></span>
+        </div>
+        <div class="popup__input-container">
+          <label for="password" class="popup__label">Пароль</label>
+          <input id="password" type="password" name="password" class="popup__input popup__input_type_password"
+                 placeholder="Введите пароль" required>
+          <span id="error-password" class="popup__error-message"></span>
+        </div>
+        <button class="button popup__button popup__button_enter" name='btn'>Войти</button>
+      </form>
+      <p class="popup__or">или <span class="popup__option popup__option_registration">Зарегистрироваться</span></p>
+    </div>
+
+    <div class="popup__content popup__content-registration">
+      <h3 class="popup__title">Регистрация</h3>
+      <form class="popup__form" name="registration" novalidate>
+        <div class="popup__input-container">
+          <label for="email-reg" class="popup__label">Email</label>
+          <input id="email-reg" type="text" name="email" class="popup__input popup__input_type_email"
+                 placeholder="Введите почту" required>
+          <span id="error-email-reg" class="popup__error-message"></span>
+        </div>
+        <div class="popup__input-container">
+          <label for="password-reg" class="popup__label">Пароль</label>
+          <input id="password-reg" type="password" name="password" class="popup__input popup__input_type_password"
+                 placeholder="Введите пароль" required>
+          <span id="error-password-reg" class="popup__error-message"></span>
+        </div>
+        <div class="popup__input-container">
+          <label for="name-reg" class="popup__label">Имя</label>
+          <input id="name-reg" type="text" name="name" class="popup__input popup__input_type_name"
+                 placeholder="Введите своё имя" required>
+          <span id="error-name-reg" class="popup__error-message"></span>
+        </div>
+        <button class="button popup__button popup__button_registration" name='btn'>Зарегистрироваться</button>
+      </form>
+      <p class="popup__or">или <span class="popup__option popup__option_enter">Войти</span></p>
+    </div>
+
+    <div class="popup__content popup__content-success">
+      <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
+
+      <p class="popup__or popup__or_enter"><span class="popup__option popup__option_enter">Выполнить вход</span></p>
+    </div>
+  </div>
+
   <header class="header root__section">
     <p class="logo header__logo">NewsExplorer</p>
     <nav class="menu header__menu">
       <a href="./" class="menu__link">Главная</a>
       <a href="./articles.html" class="menu__link">Сохранённые статьи</a>
-      <!--    <button class="header__auth">Авторизоваться</button>-->
+      <button class="header__auth">Авторизоваться</button>
       <button class="header__auth">Name
         <svg class="header__auth-exit" width="18" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"
@@ -48,8 +103,8 @@
       <form class="search__form">
         <input type="text" name="search" class="search__input search__input_type_name"
                placeholder="Введите тему новости" required>
-        <button class="button search__button" name='btn' disabled>Искать</button>
-        <!--        <button class="button search__button" name='btn'>Искать</button>-->
+        <!--        <button class="button search__button" name='btn' disabled>Искать</button>-->
+        <button class="button search__button" name='btn'>Искать</button>
       </form>
     </div>
   </section>

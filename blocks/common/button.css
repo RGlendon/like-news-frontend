@@ -16,8 +16,8 @@
   user-select: none;
   cursor: pointer;
   color: var(--color-main-white);
-  /*transition: all .3s linear;*/
-  transition: all 0s linear;
+  transition: all .2s linear;
+
 }
 
 .button:hover {
@@ -26,6 +26,7 @@
 
 .button_active {
   background: var(--color-darkblue);
+  transition: all 0s linear;
 }
 .button_active:hover {
   background: var(--color-darkblue);

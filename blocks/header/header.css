@@ -1,6 +1,6 @@
 @import url(../logo/logo.css);
 @import url(../menu/menu.css);
-@import url(./header__overlay.css);
+@import url(../common/overlay.css);
 @import url(./header__logo.css);
 @import url(./header__menu.css);
 @import url(./header__auth.css);
@@ -67,13 +67,13 @@
   .header {
     height: 66px;
     position: relative;
-    z-index: 2;
   }
 }
 
 @media all and (max-width: 650px) {
   .header {
     height: 56px;
+    z-index: 2;
   }
 
   .header_menu-is-opened .header__menu-icon_close {
