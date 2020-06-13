@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon"/>
+  <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon"/>
   <title>Webpack</title>
   <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css %>">
 </head>
@@ -11,11 +11,11 @@
 <div class="root">
   <!--    <header class="root__section header header_white">-->
   <div class="overlay"></div>
-  <header class="header root__section">
+  <header class="header header_white root__section">
     <p class="logo header__logo">NewsExplorer</p>
     <nav class="menu header__menu">
       <a href="./" class="menu__link">Главная</a>
-      <a href="./articles.html" class="menu__link">Сохранённые статьи</a>
+      <a href="articles.html" class="menu__link">Сохранённые статьи</a>
       <!--    <button class="header__auth">Авторизоваться</button>-->
       <button class="header__auth">Name
         <svg class="header__auth-exit" width="18" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,19 +40,7 @@
     </svg>
   </header>
 
-  <section class="search root__section">
-    <div class="search__container">
-      <h1 class="search__title">Что в мире творится?</h1>
-      <p class="search__description">Находите самые свежие статьи на любую тему и сохраняйте в своём личном
-        кабинете.</p>
-      <form class="search__form">
-        <input type="text" name="search" class="search__input search__input_type_name"
-               placeholder="Введите тему новости" required>
-        <button class="button search__button" name='btn' disabled>Искать</button>
-        <!--        <button class="button search__button" name='btn'>Искать</button>-->
-      </form>
-    </div>
-  </section>
+
   <section class="result root__section">
     <!--    <div class="preloader">-->
     <!--      <img class="preloader__gif" src="../images/loader.gif" alt="поиск">-->
@@ -104,22 +92,7 @@
       <button class="result__showmore">Показать еще</button>
     </div>
   </section>
-  <section class="author root__section">
-    <div class="author__container">
-      <div class="author__avatar-wrapper">
-        <div class="author__avatar"></div>
-      </div>
-      <div class="author__info">
-        <h2 class="author__about">Об авторе</h2>
-        <p class="author__description">Это блок с описанием автора проекта. Здесь следует указать, как вас зовут,
-          чем вы занимаетесь, какими технологиями разработки владеете.
-        </p>
-        <p class="author__description">Также можно рассказать о процессе обучения в Практикуме, чему вы тут
-          научились, и чем можете помочь потенциальным заказчикам.
-        </p>
-      </div>
-    </div>
-  </section>
+
   <footer class="footer root__section">
     <p class="footer__copy">© 2020 Supersite, Powered by News API</p>
     <div class="footer__container">
@@ -145,7 +118,6 @@
     </div>
   </footer>
 </div>
-
 <script src="<%= htmlWebpackPlugin.files.js %>"></script>
 </body>
 </html>

@@ -23,3 +23,7 @@
   stroke: var(--color-blue);
   fill: var(--color-blue);
 }
+
+/*.result__bookmark.result__bookmark_marked:hover {*/
+/*  stroke: var(--color-blue);*/
+/*}*/
