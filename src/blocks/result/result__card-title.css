@@ -6,6 +6,11 @@
   line-height: 30px;
   padding-top: 12px;
 
+  display: -webkit-box;
+  /*-webkit-line-clamp: 3;*/
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
   word-break: break-word;
   word-wrap: break-word;
   overflow-wrap: break-word;

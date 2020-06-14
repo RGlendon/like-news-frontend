@@ -1,17 +1,17 @@
-@import url(./popup__close.css);
-@import url(./popup__content.css);
-@import url(./popup__content_is-opened.css);
-@import url(./popup__title.css);
-@import url(./popup__form.css);
-@import url(./popup__label.css);
-@import url(./popup__input.css);
-@import url(./popup__button.css);
-@import url(./popup_is-opened.css);
-@import url(./popup__error-message.css);
+@import url(popup__close.css);
+@import url(popup__content.css);
+@import url(popup__content_is-opened.css);
+@import url(popup__title.css);
+@import url(popup__form.css);
+@import url(popup__label.css);
+@import url(popup__input.css);
+@import url(popup__button.css);
+@import url(popup_is-opened.css);
+@import url(popup__error-message.css);
 @import url(../common/overlay.css);
 @import url(../common/button.css);
-@import url(./popup__or.css);
-@import url(./popup__or_enter.css);
+@import url(popup__or.css);
+@import url(popup__or_enter.css);
 @import url(popup__option.css);
 
 

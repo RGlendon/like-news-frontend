@@ -1,12 +1,12 @@
 @import url(../logo/logo.css);
 @import url(../menu/menu.css);
 @import url(../common/overlay.css);
-@import url(./header__logo.css);
-@import url(./header__menu.css);
-@import url(./header__auth.css);
-@import url(./header__menu-icon.css);
-@import url(./header__btn-hidden.css);
-@import url(./header__lamp.css);
+@import url(header__logo.css);
+@import url(header__menu.css);
+@import url(header__auth.css);
+@import url(header__menu-icon.css);
+@import url(header__btn-hidden.css);
+@import url(header__lamp.css);
 
 
 .header {
