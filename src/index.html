@@ -11,8 +11,11 @@
 <div class="root">
 
   <div class="overlay"></div>
+
+
   <div class="popup">
     <img src="<%=require('../images/close.svg').default%>" alt="" class="popup__close">
+
     <div class="popup__content popup__content-auth">
       <h3 class="popup__title">Вход</h3>
       <form class="popup__form" name="auth" novalidate>
@@ -20,15 +23,15 @@
           <label for="email" class="popup__label">Email</label>
           <input id="email" type="text" name="email" class="popup__input popup__input_type_email"
                  placeholder="Введите почту" required>
-          <span id="error-email" class="popup__error-message"></span>
+          <span class="popup__error-message popup__error-message_email"></span>
         </div>
         <div class="popup__input-container">
           <label for="password" class="popup__label">Пароль</label>
           <input id="password" type="password" name="password" class="popup__input popup__input_type_password"
                  placeholder="Введите пароль" required>
-          <span id="error-password" class="popup__error-message"></span>
+          <span class="popup__error-message  popup__error-message_password"></span>
         </div>
-        <button class="button popup__button popup__button_enter" name='btn'>Войти</button>
+        <button class="button popup__button popup__button_enter" name='btn' disabled>Войти</button>
       </form>
       <p class="popup__or">или <span class="popup__option popup__option_registration">Зарегистрироваться</span></p>
     </div>
@@ -40,19 +43,19 @@
           <label for="email-reg" class="popup__label">Email</label>
           <input id="email-reg" type="text" name="email" class="popup__input popup__input_type_email"
                  placeholder="Введите почту" required>
-          <span id="error-email-reg" class="popup__error-message"></span>
+          <span class="popup__error-message popup__error-message_email"></span>
         </div>
         <div class="popup__input-container">
           <label for="password-reg" class="popup__label">Пароль</label>
           <input id="password-reg" type="password" name="password" class="popup__input popup__input_type_password"
                  placeholder="Введите пароль" required>
-          <span id="error-password-reg" class="popup__error-message"></span>
+          <span class="popup__error-message popup__error-message_password"></span>
         </div>
         <div class="popup__input-container">
           <label for="name-reg" class="popup__label">Имя</label>
           <input id="name-reg" type="text" name="name" class="popup__input popup__input_type_name"
                  placeholder="Введите своё имя" required>
-          <span id="error-name-reg" class="popup__error-message"></span>
+          <span class="popup__error-message popup__error-message_name"></span>
         </div>
         <button class="button popup__button popup__button_registration" name='btn'>Зарегистрироваться</button>
       </form>
@@ -61,10 +64,10 @@
 
     <div class="popup__content popup__content-success">
       <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
-
       <p class="popup__or popup__or_enter"><span class="popup__option popup__option_enter">Выполнить вход</span></p>
     </div>
   </div>
+
 
   <header class="header root__section">
     <p class="logo header__logo">NewsExplorer</p>
@@ -95,6 +98,7 @@
     </svg>
   </header>
 
+
   <section class="search root__section">
     <div class="search__container">
       <h1 class="search__title">Что в мире творится?</h1>
@@ -108,6 +112,8 @@
       </form>
     </div>
   </section>
+
+
   <section class="result root__section">
     <!--    <div class="preloader">-->
     <!--      <img class="preloader__gif" src="../images/loader.gif" alt="поиск">-->
@@ -159,6 +165,8 @@
       <button class="result__showmore">Показать еще</button>
     </div>
   </section>
+
+
   <section class="author root__section">
     <div class="author__container">
       <div class="author__avatar-wrapper">
@@ -175,6 +183,8 @@
       </div>
     </div>
   </section>
+
+
   <footer class="footer root__section">
     <p class="footer__copy">© 2020 Supersite, Powered by News API</p>
     <div class="footer__container">

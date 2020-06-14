@@ -5,6 +5,7 @@
 @import url(./header__menu.css);
 @import url(./header__auth.css);
 @import url(./header__menu-icon.css);
+@import url(./header__btn-hidden.css);
 
 .header {
   height: 80px;
@@ -73,7 +74,8 @@
 @media all and (max-width: 650px) {
   .header {
     height: 56px;
-    z-index: 2;
+    /*z-index: 2;*/
+    z-index: 1;
   }
 
   .header_menu-is-opened .header__menu-icon_close {

@@ -47,19 +47,22 @@ export default class CardList {
   }
 
   render(initialCards, opt, btn) {
+    const  show = opt ? opt.show : null;
+    const  type = opt ? opt.type : null;
+
     const first = 3;
     const step = 3;
     let multiplier = null;
     if (650 < window.innerWidth) multiplier = 3;
     // if
     // count = (count === 'more') ? initialCards.length : 3;
-    this.numberOfClickMore = (opt === 'more') ? ++this.numberOfClickMore : 0;
+    this.numberOfClickMore = (show === 'more') ? ++this.numberOfClickMore : 0;
 
-    const from = (opt === 'more') ? first * this.numberOfClickMore : 0;
-    const to = (opt === 'more') ? from + step : first;
+    const from = (show === 'more') ? first * this.numberOfClickMore : 0;
+    const to = (show === 'more') ? from + step : first;
 
     initialCards.forEach((card, index) => {
-      if (index >= from && index < to) this.addCard(card, opt);
+      if (index >= from && index < to) this.addCard(card, type);
     });
 
     if (to >= initialCards.length && btn) btn.setAttribute('disabled', true);
