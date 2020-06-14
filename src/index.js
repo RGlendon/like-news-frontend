@@ -16,12 +16,13 @@ const registrationForm = document.forms.registration;
 const card = new Card();
 const cardList = new CardList(cardContainer, card);
 const popup = new Popup(document.querySelector('.popup'));
-const menu = new Menu(document.querySelector('.menu'));
+const menu = new Menu(document.querySelector('.header__menu'));
 const overlay = new Overlay(document.querySelector('.overlay'));
 
 new FormValidation(authForm);
 new FormValidation(registrationForm);
 
+menu.transformLamp();
 cardList.render(initialCards);
 
 

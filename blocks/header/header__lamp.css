@@ -1,0 +1,16 @@
+.header__lamp {
+  height: 5px;
+  background-color: var(--color-main-white);
+
+  position: absolute;
+  bottom: -2px;
+
+  transition: all .33s linear;
+}
+
+
+@media all and (max-width: 650px) {
+  .header__lamp {
+    display: none;
+  }
+}

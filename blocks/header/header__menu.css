@@ -1,6 +1,13 @@
+.header__menu {
+  position: relative;
+  height: 100%;
+}
+
+
 @media all and (max-width: 650px) {
   .header__menu {
     width: 100%;
+    height: fit-content;
     position: absolute;
     top: 56px;
     left: 0;

@@ -15,7 +15,7 @@ const overlay = new Overlay(document.querySelector('.overlay'));
 
 let savedArticles = JSON.parse(localStorage.getItem('savedArticles'));
 
-
+menu.transformLamp();
 cardList.render(savedArticles, {type: 'saved'});
 
 
