@@ -1,8 +1,0 @@
-@import url(./root__section.css);
-
-.root {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  position: relative;
-}

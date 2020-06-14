@@ -1,0 +1,33 @@
+@import url(search__container.css);
+@import url(search__title.css);
+@import url(search__description.css);
+@import url(search__form.css);
+@import url(search__input.css);
+@import url(search__button.css);
+
+
+.search {
+  padding-top: 160px;
+  padding-bottom: 80px;
+  background-image: url(../../images/search-bg.jpg);
+  background-size: cover;
+  background-position: center;
+  margin-top: -80px;
+
+  color: var(--color-main-white);
+}
+
+
+@media all and (max-width: 768px) {
+  .search {
+    padding-top: 105px;
+    padding-bottom: 48px;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .search {
+    padding-top: 86px;
+    padding-bottom: 32px;
+  }
+}
