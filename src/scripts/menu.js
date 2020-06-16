@@ -24,8 +24,8 @@ export default class Menu {
 
   transformLamp() {
     let currentPath = document.location.pathname;
-    // console.log(currentPath)
-    let currentElement = (currentPath === '/')
+    console.log(currentPath)
+    let currentElement = (currentPath === '/index.html' || currentPath === '/')
       ? document.querySelector('.menu__link_main')
       : document.querySelector('.menu__link_articles');
     // console.log(currentElement)

@@ -15,12 +15,8 @@
   color: #000;
 
   margin-top: 8px;
-  /*margin-bottom: 24px;*/
+  transition: all .2s linear;
 }
-
-/*.popup__input:last-of-type {*/
-/*  margin-bottom: 0;*/
-/*}*/
 
 .popup__input::placeholder {
   font-family: Inter, sans-serif;
@@ -32,4 +28,8 @@
   color: #000000;
 
   opacity: 0.2;
+}
+
+.popup__input:focus {
+  border-bottom: 1px solid #000;
 }

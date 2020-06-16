@@ -1,13 +1,13 @@
 import './style.css';
 
-import Card from './scripts/card';
-import CardList from './scripts/cardList';
-import Menu from './scripts/menu';
-import Popup from "./scripts/popup";
-import FormValidation from "./scripts/formValidation";
-import Overlay from "./scripts/overlay";
-import initialCards from './scripts/initialCards';
-import savedArticles from "./scripts/savedArticles";
+import Card from '../scripts/card';
+import CardList from '../scripts/cardList';
+import Menu from '../scripts/menu';
+import Popup from "../scripts/popup";
+import FormValidation from "../scripts/formValidation";
+import Overlay from "../scripts/overlay";
+import initialCards from '../scripts/initialCards';
+import savedArticles from "../scripts/savedArticles";
 
 const cardContainer = document.querySelector('.result__cards');
 const authForm = document.forms.auth;
