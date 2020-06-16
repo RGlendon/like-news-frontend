@@ -1,9 +1,9 @@
-import './style.css';
+import './articles.css';
 
-import Menu from '../scripts/menu';
-import Card from '../scripts/card';
-import CardList from '../scripts/cardList';
-import Overlay from "../scripts/overlay";
+import Menu from '../../scripts/menu';
+import Card from '../../scripts/card';
+import CardList from '../../scripts/cardList';
+import Overlay from "../../scripts/overlay";
 
 const cardContainer = document.querySelector('.result__cards');
 

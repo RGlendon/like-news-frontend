@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="<%=require('./images/favicon.ico').default%>" type="image/x-icon"/>
+  <link rel="shortcut icon" href="<%=require('../images/favicon.ico').default%>" type="image/x-icon"/>
   <title>Webpack</title>
   <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css %>">
 </head>
@@ -14,7 +14,7 @@
 
 
   <div class="popup">
-    <img src="<%=require('./images/close.svg').default%>" alt="закрыть" class="popup__close">
+    <img src="<%=require('../images/close.svg').default%>" alt="закрыть" class="popup__close">
 
     <div class="popup__content popup__content-auth">
       <h3 class="popup__title">Вход</h3>
@@ -72,7 +72,7 @@
   <header class="header root__section">
     <p class="logo header__logo">NewsExplorer</p>
     <nav class="menu header__menu">
-      <a href="./" class="menu__link menu__link_main">Главная</a>
+      <a href="./index.html" class="menu__link menu__link_main">Главная</a>
       <a href="./articles.html" class="menu__link menu__link_articles">Сохранённые статьи</a>
       <div class="header__lamp"></div>
 
@@ -103,9 +103,9 @@
 
   <section class="search root__section">
     <picture class="search__bg">
-      <source media="(max-width: 320px)" srcset="<%=require('./images/search-bg/search-bg-320.jpg').default%>">
-      <source media="(max-width: 768px)" srcset="<%=require('./images/search-bg/search-bg-768.jpg').default%>">
-      <img src="<%=require('./images/search-bg/search-bg-1440.jpg').default%>" alt="max bg">
+      <source media="(max-width: 320px)" srcset="<%=require('../images/search-bg/search-bg-320.jpg').default%>">
+      <source media="(max-width: 768px)" srcset="<%=require('../images/search-bg/search-bg-768.jpg').default%>">
+      <img src="<%=require('../images/search-bg/search-bg-1440.jpg').default%>" alt="max bg">
     </picture>
 
     <div class="search__container">
@@ -123,7 +123,7 @@
 
   <section class="result root__section">
     <div class="preloader">
-      <img class="preloader__gif" src="<%=require('./images/loader.gif').default%>" alt="поиск">
+      <img class="preloader__gif" src="<%=require('../images/loader.gif').default%>" alt="поиск">
       <p class="preloader__title">Идет поиск новостей...</p>
     </div>
 
