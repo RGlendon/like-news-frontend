@@ -1,5 +1,5 @@
 export default class Popup {
-  constructor(popup, overlay) {
+  constructor(popup) {
     this.popup = popup;
     this.button = this.popup.querySelector('.popup__button') || undefined;
     this.popupAuth = this.popup.querySelector('.popup__content-auth');
@@ -21,11 +21,11 @@ export default class Popup {
         this.openAuth();
         this.resetForms();
       }
-      if (event.target.matches('.popup__button_registration')) {
-        event.preventDefault();
-        this.closeReg();
-        this.openSuccess();
-      }
+      // if (event.target.matches('.popup__button_registration')) {
+      //   event.preventDefault();
+      //   this.closeReg();
+      //   this.openSuccess();
+      // }
     });
   }
 

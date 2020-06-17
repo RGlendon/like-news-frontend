@@ -25,7 +25,7 @@ const initialCards = [
   },
   {
     _id: 3,
-    urlToImage: 'https://storge.pic2.me/upload/695/583bf626ef88f.jpg',
+    urlToImage: 'https://avatars.mds.yandex.net/get-pdb/25978/f398fbad-a3ff-41b4-97dd-746d22a8230c/s1200?webp=false',
     publishedAt: '23 августа, 2019',
     title: '«Первозданнаяваываыва тайга»: новый фотопроект Игоря Шпиленка',
     description: `Знаменитый фотограф снимает первозданные леса России, чтобы рассказать о необходимости их сохранения. 

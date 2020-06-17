@@ -14,26 +14,39 @@ export default class Menu {
     this.header.classList.remove('header_menu-is-opened');
   }
 
-  hideButton() {
-    this.header.querySelector('.header__menu-icon_open').classList.add('header__btn-hidden');
+  hideMenuButton() {
+    this.header.querySelector('.header__menu-icon_open').classList.add('header__elem-hidden');
   }
 
-  showButton() {
-    this.header.querySelector('.header__menu-icon_open').classList.remove('header__btn-hidden');
+  showMenuButton() {
+    this.header.querySelector('.header__menu-icon_open').classList.remove('header__elem-hidden');
+  }
+
+  hideAuthButton() {
+    this.header.querySelector('.header__auth_enter').classList.add('header__elem-hidden');
+  }
+  showNameButton(name) {
+    const nameButton = this.header.querySelector('.header__auth_name');
+    nameButton.classList.remove('header__elem-hidden');
+    nameButton.firstChild.textContent = name;
+  }
+
+  toggleSavedCard() {
+    this.header.querySelector('.menu__link_articles').classList.toggle('header__elem-hidden');
   }
 
   transformLamp() {
     let currentPath = document.location.pathname;
-    console.log(currentPath)
+    // console.log(currentPath)
     let currentElement = (currentPath === '/index.html' || currentPath === '/')
       ? document.querySelector('.menu__link_main')
       : document.querySelector('.menu__link_articles');
     // console.log(currentElement)
+
     let currentElementLeft = currentElement.getBoundingClientRect().left;
-    //
+
     this.lamp.style.width = `${currentElement.offsetWidth}px`;
     this.lamp.style.transform = `translateX(${currentElementLeft - this.menuLeft}px)`;
-
   };
 }
 

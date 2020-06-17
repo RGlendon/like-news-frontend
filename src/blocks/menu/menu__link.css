@@ -1,6 +1,6 @@
 .menu__link {
   text-decoration: none;
-  color: inherit;
+  color: var(--color-gray-text);
   margin-right: 32px;
 }
 

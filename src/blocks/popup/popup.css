@@ -8,6 +8,7 @@
 @import url(popup__button.css);
 @import url(popup_is-opened.css);
 @import url(popup__error-message.css);
+@import url(popup__error-message_common.css);
 @import url(../common/overlay.css);
 @import url(../common/button.css);
 @import url(popup__or.css);
@@ -21,7 +22,7 @@
   left: 50%;
 
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: 3;
   display: none;
   width: 430px;
   /*min-height: 380px;*/
