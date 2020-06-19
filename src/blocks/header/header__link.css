@@ -1,0 +1,14 @@
+ .header__link {
+   color: var(--color-gray-text);
+ }
+
+ .header__link_active {
+   color: var(--color-main-white);
+ }
+
+
+ @media all and (max-width: 650px) {
+   .header__link {
+     color: inherit;
+   }
+ }

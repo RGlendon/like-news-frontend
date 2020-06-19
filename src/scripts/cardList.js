@@ -13,7 +13,6 @@ export default class CardList {
   }
 
 
-
   textSizeDetermination(newCard) {
     const infoContainer = newCard.querySelector('.result__info-container');
     const infoContainerStyle = getComputedStyle(infoContainer);
@@ -36,16 +35,16 @@ export default class CardList {
 
     // if (title.clientHeight >= title.scrollHeight * 0.98 && title.clientHeight <= title.scrollHeight * 1.02 ) {
     // if (title.clientHeight === title.scrollHeight - 2 ) {
-      const descriptionStyle = getComputedStyle(description);
-      const descrPaddingTop = parseInt(descriptionStyle.paddingTop);
-      const maxInnerDescriptionHeight = infoContainerInnerHeight - dateHeight - titleHeight - publisherHeight - descrPaddingTop;
-      // console.log(maxInnerDescriptionHeight)
-      const lineHeight = parseInt(descriptionStyle.lineHeight);
-      const maxLinesNumber = Math.floor(maxInnerDescriptionHeight / lineHeight);
-      // console.log(maxLinesNumber)
+    const descriptionStyle = getComputedStyle(description);
+    const descrPaddingTop = parseInt(descriptionStyle.paddingTop);
+    const maxInnerDescriptionHeight = infoContainerInnerHeight - dateHeight - titleHeight - publisherHeight - descrPaddingTop;
+    // console.log(maxInnerDescriptionHeight)
+    const lineHeight = parseInt(descriptionStyle.lineHeight);
+    const maxLinesNumber = Math.floor(maxInnerDescriptionHeight / lineHeight);
+    // console.log(maxLinesNumber)
 
-      description.style.display = (maxLinesNumber <= 0) ? 'none' : '-webkit-box';
-      description.style.WebkitLineClamp = maxLinesNumber;
+    description.style.display = (maxLinesNumber <= 0) ? 'none' : '-webkit-box';
+    description.style.WebkitLineClamp = maxLinesNumber;
     // }
 
     if (description.style.display === 'none') {
@@ -95,7 +94,8 @@ export default class CardList {
     });
 
     console.log(this.container.children)
-    if (to >= initialCards.length && btn) btn.setAttribute('disabled', true);
+    // if (to >= initialCards.length && btn) btn.setAttribute('disabled', true);
+    if (to >= initialCards.length && btn) btn.classList.add('elem-hidden');
   }
 
   eventHandler(event) {
@@ -112,6 +112,26 @@ export default class CardList {
         savedArticles.splice(savedArticles.indexOf(initialCards.find(item => item._id === +idCard)), 1);
         // console.dir(savedArticles);
       }
+    }
+  }
+
+  renderLoading(isLoading) {
+    const preloader = document.querySelector('.preloader');
+
+    if (isLoading) {
+      preloader.classList.remove('elem-hidden');
+    } else {
+      preloader.classList.add('elem-hidden');
+    }
+  }
+
+  renderOops(isShown) {
+    const oops = document.querySelector('.oops');
+
+    if (isShown) {
+      oops.classList.remove('elem-hidden');
+    } else {
+      oops.classList.add('elem-hidden');
     }
   }
 

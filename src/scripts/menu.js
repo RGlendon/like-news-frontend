@@ -9,7 +9,6 @@ export default class Menu {
   open() {
     this.header.classList.add('header_menu-is-opened');
   }
-
   close() {
     this.header.classList.remove('header_menu-is-opened');
   }
@@ -17,7 +16,6 @@ export default class Menu {
   hideMenuButton() {
     this.header.querySelector('.header__menu-icon_open').classList.add('header__elem-hidden');
   }
-
   showMenuButton() {
     this.header.querySelector('.header__menu-icon_open').classList.remove('header__elem-hidden');
   }
@@ -25,28 +23,50 @@ export default class Menu {
   hideAuthButton() {
     this.header.querySelector('.header__auth_enter').classList.add('header__elem-hidden');
   }
+  showAuthButton() {
+    this.header.querySelector('.header__auth_enter').classList.remove('header__elem-hidden');
+  }
+
   showNameButton(name) {
     const nameButton = this.header.querySelector('.header__auth_name');
     nameButton.classList.remove('header__elem-hidden');
     nameButton.firstChild.textContent = name;
   }
-
-  toggleSavedCard() {
-    this.header.querySelector('.menu__link_articles').classList.toggle('header__elem-hidden');
+  hideNameButton() {
+    this.header.querySelector('.header__auth_name').classList.add('header__elem-hidden');
   }
 
-  transformLamp() {
+  toggleSavedCard() {
+    this.header.querySelector('.header__link_articles').classList.toggle('header__elem-hidden');
+  }
+
+
+  chooseCurrentLink() {
     let currentPath = document.location.pathname;
     // console.log(currentPath)
-    let currentElement = (currentPath === '/index.html' || currentPath === '/')
-      ? document.querySelector('.menu__link_main')
-      : document.querySelector('.menu__link_articles');
-    // console.log(currentElement)
-
+    return (currentPath === '/index.html' || currentPath === '/')
+      ? document.querySelector('.header__link_main')
+      : document.querySelector('.header__link_articles');
+  }
+  activateLink() {
+    this.header.querySelectorAll('.header__menu .menu__link').forEach((link) => {
+      link.classList.remove('header__link_active');
+    });
+    this.chooseCurrentLink().classList.add('header__link_active');
+  }
+  transformLamp() {
+    let currentElement = this.chooseCurrentLink();
     let currentElementLeft = currentElement.getBoundingClientRect().left;
 
     this.lamp.style.width = `${currentElement.offsetWidth}px`;
     this.lamp.style.transform = `translateX(${currentElementLeft - this.menuLeft}px)`;
   };
+
+  activateCurrentLink() {
+    this.activateLink();
+    this.transformLamp();
+  }
+
+
 }
 

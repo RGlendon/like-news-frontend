@@ -3,6 +3,7 @@
 @import url(../common/overlay.css);
 @import url(header__logo.css);
 @import url(header__menu.css);
+@import url(header__link.css);
 @import url(header__auth.css);
 @import url(header__menu-icon.css);
 @import url(header__elem-hidden.css);

@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const instance = axios.create({
   baseURL: 'http://localhost:3000/v1',
-  // withCredentials: true,
+  withCredentials: true,
 });
 
 export const usersAPI = {
