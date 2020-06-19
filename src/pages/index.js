@@ -10,6 +10,7 @@ import initialCards from '../scripts/initialCards';
 import savedArticles from '../scripts/savedArticles';
 import ApiFetch from '../scripts/api/apiFetch';
 import ApiNews from "../scripts/api/apiNews";
+import {store, isLoggedIn} from "../scripts/configReduser";
 
 const cardContainer = document.querySelector('.result__cards');
 const authForm = document.forms.auth;
@@ -47,6 +48,7 @@ Promise.all([
     menu.showNameButton(user[0].data.name);
     menu.toggleSavedCard();
     menu.showMenuButton();
+    isLoggedIn(true);
   })
   .catch((err) => {
     console.dir(err);
@@ -74,6 +76,7 @@ function login(event) {
       menu.showNameButton(user.name);
       menu.toggleSavedCard();
       menu.showMenuButton();
+      isLoggedIn(true);
       popup.close();
       overlay.close();
     })
@@ -89,6 +92,7 @@ function logout() {
       menu.showAuthButton();
       menu.hideNameButton();
       menu.toggleSavedCard();
+      isLoggedIn(false);
     })
     .catch((err) => {
       console.log(err)
@@ -97,22 +101,31 @@ function logout() {
 
 function searchNews(event) {
   event.preventDefault();
+  cardList.renderResult(true);
+  cardList.renderList(false);
   cardList.renderOops(false);
+  cardList.renderError(false);
   cardList.renderLoading(true);
   apiNews.getNews(searchForm.elements.search.value)
     .then((result) => {
-      console.log(result.articles)
+      // console.log(result.articles)
       if (result.totalResults === 0) {
         cardList.renderOops(true);
+      } else {
+        // foundArticles.length = 0;
+        foundArticles = result.articles;
+        console.log(foundArticles);
+        cardList.renderList(true);
+        cardList.render(foundArticles);
       }
-      foundArticles = result.articles;
-      cardList.render(foundArticles);
     })
     .catch((err) => {
       console.dir(err);
+      cardList.renderError(true);
       // console.log(err);
     })
     .finally(() => {
+      searchForm.reset();
       cardList.renderLoading(false);
     });
 

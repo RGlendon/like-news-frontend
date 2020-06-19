@@ -24,3 +24,7 @@ export const sanitarize = (string) => {
 //   return value;
 // };
 
+export const validateUrl = (str) => {
+  const regExp = /https?:\/\/(www\.)?(\w+(-\w+)*(\.\w+(-\w+)*)*\.[a-z]{2,}|(\d\d?|1\d\d|2[0-5][0-5])(\.(\d\d?|1\d\d|2[0-5][0-5])){3})(:\d{2,5})?([0-9a-z\/]+)?#?/
+  return regExp.test(str);
+};

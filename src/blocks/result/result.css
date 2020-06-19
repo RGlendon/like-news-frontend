@@ -14,6 +14,8 @@
 @import url(result__description.css);
 @import url(result__publisher.css);
 @import url(result__showmore.css);
+@import url(result__link.css);
+@import url(result__error.css);
 
 
 .result {

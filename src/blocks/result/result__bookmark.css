@@ -8,16 +8,11 @@
   cursor: pointer;
   padding-top: 5px;
 
-
-
   stroke: var(--color-gray-text);
   fill: none;
   transition: all .3s linear;
 }
 
-.result__bookmark:hover {
-  stroke: var(--color-main-primary);
-}
 
 .result__bookmark_marked {
   stroke: var(--color-blue);

@@ -7,6 +7,8 @@
   display: flex;
 }
 
+
+
 .result__bookmark-container:hover .result__bookmark {
   stroke: var(--color-main-primary);
 }

@@ -1,6 +1,6 @@
 export default class ApiNews {
   constructor() {
-    this.baseUrl = 'http://newsapi.org/v2/everything?';
+    this.baseUrl = 'https://newsapi.org/v2/everything?';
     this.apiKey = '200bdc0bda904a5caec25b52d70a903c';
     this.howOld = 7;
     this.pageSize = 100;

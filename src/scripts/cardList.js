@@ -80,6 +80,8 @@ export default class CardList {
     // count = (count === 'more') ? initialCards.length : 3;
     this.numberOfClickMore = (show === 'more') ? ++this.numberOfClickMore : 0;
 
+    if (show !== 'more') this.container.innerHTML = '';
+
     const from = (show === 'more') ? first * this.numberOfClickMore : 0;
     const to = (show === 'more') ? from + step : first;
 
@@ -93,7 +95,7 @@ export default class CardList {
       })
     });
 
-    console.log(this.container.children)
+    // console.log(this.container.children)
     // if (to >= initialCards.length && btn) btn.setAttribute('disabled', true);
     if (to >= initialCards.length && btn) btn.classList.add('elem-hidden');
   }
@@ -102,12 +104,13 @@ export default class CardList {
     if (event.target.classList.contains('result__bookmark') || event.target.matches('svg') || event.target.matches('path')) {
       let button = event.target.closest('.result__bookmark');
       let idCard = event.target.closest('.result__card').dataset.id;
-      if (!button.matches('.result__bookmark_marked')) {
+      // debugger
+      if (!button.matches('.result__bookmark_marked') && !button.disabled) {
         this.card.toggleLike(button);
         savedArticles.push(initialCards.find(item => item._id === +idCard));
         // console.dir(savedArticles);
         // console.dir(initialCards)
-      } else {
+      } else if (button.matches('.result__bookmark_marked')) {
         this.card.toggleLike(button);
         savedArticles.splice(savedArticles.indexOf(initialCards.find(item => item._id === +idCard)), 1);
         // console.dir(savedArticles);
@@ -132,6 +135,36 @@ export default class CardList {
       oops.classList.remove('elem-hidden');
     } else {
       oops.classList.add('elem-hidden');
+    }
+  }
+
+  renderResult(isShown) {
+    const result = document.querySelector('.result');
+
+    if (isShown) {
+      result.classList.remove('elem-hidden');
+    } else {
+      result.classList.add('elem-hidden');
+    }
+  }
+
+  renderList(isShown) {
+    const result = document.querySelector('.result__wrapper');
+
+    if (isShown) {
+      result.classList.remove('elem-hidden');
+    } else {
+      result.classList.add('elem-hidden');
+    }
+  }
+
+  renderError(isShown) {
+    const result = document.querySelector('.result__error');
+
+    if (isShown) {
+      result.classList.remove('elem-hidden');
+    } else {
+      result.classList.add('elem-hidden');
     }
   }
 

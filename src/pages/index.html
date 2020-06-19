@@ -128,7 +128,7 @@
   </section>
 
 
-  <section class="result root__section">
+  <section class="result root__section elem-hidden">
     <div class="preloader elem-hidden">
       <img class="preloader__gif" src="<%=require('../images/loader.gif').default%>" alt="поиск">
       <p class="preloader__title">Идет поиск новостей...</p>
@@ -147,7 +147,10 @@
         ничего не найдено.</p>
     </div>
 
-    <div class="result__wrapper">
+    <h2 class="result__error elem-hidden">Во время запроса произошла ошибка. Возможно, проблема с соединением или
+      сервер недоступен. Подождите немного и попробуйте ещё раз</h2>
+
+    <div class="result__wrapper elem-hidden">
       <h2 class="result__title">Результаты поиска</h2>
       <div class="result__cards">
         <!--        <div class="result__card">-->
