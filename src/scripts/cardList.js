@@ -1,11 +1,14 @@
 import savedArticles from "./savedArticles";
 import initialCards from "./initialCards";
+import {store} from "./configReduser";
 
 export default class CardList {
-  constructor(container, card) {
+  constructor(container, card, api) {
     this.container = container;
     this.card = card;
+    this.api = api;
     this.numberOfClickMore = 0;
+    this.showMoreBtn = document.querySelector('.result__showmore');
 
 
     // слушатель на весь контейнер
@@ -60,9 +63,9 @@ export default class CardList {
     // }
   }
 
-  addCard(card, opt) {
-    const newCard = this.card.create(card, opt);
-    newCard.dataset.id = card._id;
+  addCard(card, {type, index}) {
+    const newCard = this.card.create(card, type);
+    newCard.dataset.number = index;
     this.container.append(newCard);
 
     this.textSizeDetermination(newCard);
@@ -86,7 +89,7 @@ export default class CardList {
     const to = (show === 'more') ? from + step : first;
 
     initialCards.forEach((card, index) => {
-      if (index >= from && index < to) this.addCard(card, type);
+      if (index >= from && index < to) this.addCard(card, {type, index});
     });
 
     window.addEventListener('resize', () => {
@@ -97,22 +100,44 @@ export default class CardList {
 
     // console.log(this.container.children)
     // if (to >= initialCards.length && btn) btn.setAttribute('disabled', true);
-    if (to >= initialCards.length && btn) btn.classList.add('elem-hidden');
+    if (to >= initialCards.length) this.showBtn(false);
   }
 
   eventHandler(event) {
     if (event.target.classList.contains('result__bookmark') || event.target.matches('svg') || event.target.matches('path')) {
       let button = event.target.closest('.result__bookmark');
-      let idCard = event.target.closest('.result__card').dataset.id;
+      let currentCard = event.target.closest('.result__card');
+      let cardNumber = currentCard.dataset.number;
       // debugger
       if (!button.matches('.result__bookmark_marked') && !button.disabled) {
-        this.card.toggleLike(button);
-        savedArticles.push(initialCards.find(item => item._id === +idCard));
-        // console.dir(savedArticles);
-        // console.dir(initialCards)
+        const {
+          urlToImage: image, publishedAt: date, title, description: text, url: link, source: {name: source}
+        } = store.currentArticles[cardNumber];
+        const data = {keyword: store.currentKeyWord, image, date, title, text, source, link};
+        console.dir(data)
+        this.api.likeArticle(data)
+          .then((article) => {
+            this.card.toggleLike(button);
+            currentCard.dataset.id = article.data._id;
+            console.dir(article)
+          })
+          .catch((err) => {
+            console.dir(err)
+          });
+
+        // console.log(store.currentArticles[idCard]);
+        // savedArticles.push(initialCards.find(item => item._id === +idCard));
+
       } else if (button.matches('.result__bookmark_marked')) {
-        this.card.toggleLike(button);
-        savedArticles.splice(savedArticles.indexOf(initialCards.find(item => item._id === +idCard)), 1);
+        const cardId = currentCard.dataset.id;
+        this.api.dislikeArticle(cardId)
+          .then((article) => {
+            this.card.toggleLike(button);
+          })
+          .catch((err) => {
+            console.dir(err)
+          });
+        // savedArticles.splice(savedArticles.indexOf(initialCards.find(item => item._id === +idCard)), 1);
         // console.dir(savedArticles);
       }
     }
@@ -165,6 +190,16 @@ export default class CardList {
       result.classList.remove('elem-hidden');
     } else {
       result.classList.add('elem-hidden');
+    }
+  }
+
+  showBtn(isShown) {
+    // const result = document.querySelector('.result__error');
+
+    if (isShown) {
+      this.showMoreBtn.classList.remove('elem-hidden');
+    } else {
+      this.showMoreBtn.classList.add('elem-hidden');
     }
   }
 

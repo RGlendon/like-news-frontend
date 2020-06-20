@@ -10,21 +10,21 @@ import initialCards from '../scripts/initialCards';
 import savedArticles from '../scripts/savedArticles';
 import ApiFetch from '../scripts/api/apiFetch';
 import ApiNews from "../scripts/api/apiNews";
-import {store, isLoggedIn} from "../scripts/configReduser";
+import { store, isLoggedIn, setKeyWord, setArticles } from "../scripts/configReduser";
 
 const cardContainer = document.querySelector('.result__cards');
 const authForm = document.forms.auth;
 const registrationForm = document.forms.registration;
 const searchForm = document.forms.search;
 
+const api = new ApiFetch('http://localhost:3000/v1');
+const apiNews = new ApiNews();
+
 const card = new Card();
-const cardList = new CardList(cardContainer, card);
+const cardList = new CardList(cardContainer, card, api);
 const popup = new Popup(document.querySelector('.popup'));
 const menu = new Menu(document.querySelector('.header__menu'));
 const overlay = new Overlay(document.querySelector('.overlay'));
-
-const api = new ApiFetch('http://localhost:3000/v1');
-const apiNews = new ApiNews();
 
 const validateAuthForm = new FormValidation(authForm);
 const validateRegForm = new FormValidation(registrationForm);
@@ -106,22 +106,26 @@ function searchNews(event) {
   cardList.renderOops(false);
   cardList.renderError(false);
   cardList.renderLoading(true);
+  cardList.showBtn(true);
+  setKeyWord(searchForm.elements.search.value);
   apiNews.getNews(searchForm.elements.search.value)
     .then((result) => {
-      // console.log(result.articles)
+      console.log(result.articles)
       if (result.totalResults === 0) {
         cardList.renderOops(true);
       } else {
         // foundArticles.length = 0;
-        foundArticles = result.articles;
-        console.log(foundArticles);
+        setArticles(result.articles);
+        // foundArticles = result.articles;
+        // console.log(foundArticles);
         cardList.renderList(true);
-        cardList.render(foundArticles);
+        cardList.render(store.currentArticles);
       }
     })
     .catch((err) => {
       console.dir(err);
       cardList.renderError(true);
+      setArticles([])
       // console.log(err);
     })
     .finally(() => {
@@ -171,7 +175,7 @@ document.addEventListener('click', (e) => {
 
   if (e.target.matches('.result__showmore')) {
     console.log('показал новые карты');
-    cardList.render(foundArticles, {show: 'more'}, e.target);
+    cardList.render(store.currentArticles, {show: 'more'});
     // e.target.setAttribute('disabled', true);
   }
 
@@ -192,6 +196,8 @@ document.addEventListener('keydown', (e) => {
     overlay.close();
   }
 });
+
+
 document.addEventListener('DOMContentLoaded', () => {
   console.dir('hello my friend');
 });

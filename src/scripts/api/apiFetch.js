@@ -41,9 +41,18 @@ export default class ApiFetch {
   }
 
 
-  getInitialCards() {
-    return this.makeFetch('/cards');
+  likeArticle({keyword, title, text, date, source, link, image}) {
+    return this.makeFetch('/articles', 'POST', 'application/json', {
+      keyword, title, text, date, source, link, image
+    });
+
   }
+
+  dislikeArticle(id) {
+    return this.makeFetch(`/articles/${id}`, 'DELETE');
+  }
+
+
 
   updateUserInfo(name, about) {
     let body = {
