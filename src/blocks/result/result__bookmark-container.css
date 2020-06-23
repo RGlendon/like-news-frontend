@@ -3,14 +3,19 @@
   top: 24px;
   right: 24px;
 
-  height: 40px;
   display: flex;
+
+  z-index: 1;
 }
 
 
 
-.result__bookmark-container:hover .result__bookmark {
+.result__bookmark-container:hover .result__bookmark_save {
   stroke: var(--color-main-primary);
+}
+
+.result__bookmark-container:hover .result__bookmark_delete {
+  fill: var(--color-main-primary);
 }
 
 .result__bookmark-container:hover .result__prompt {
@@ -22,6 +27,13 @@
   .result__bookmark-container {
     top: calc(8px + (24 - 8)*(100vw - 768px)/(1440 - 768));
     right: calc(8px + (24 - 8)*(100vw - 768px)/(1440 - 768));
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .result__bookmark-container {
+    flex-direction: column-reverse;
+    align-items: flex-end;
   }
 }
 

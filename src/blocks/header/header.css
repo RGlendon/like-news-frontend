@@ -6,7 +6,6 @@
 @import url(header__link.css);
 @import url(header__auth.css);
 @import url(header__menu-icon.css);
-@import url(header__elem-hidden.css);
 @import url(header__lamp.css);
 
 
@@ -43,6 +42,14 @@
 
 .header_white .header__menu-icon {
   fill: var(--color-main-primary);
+}
+
+.header_white .header__link {
+  color: var(--color-main-primary);
+}
+
+.header_white .header__link_active {
+  color: var(--color-main-primary);
 }
 
 .header_white .header__lamp {

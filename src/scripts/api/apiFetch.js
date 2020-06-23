@@ -53,39 +53,7 @@ export default class ApiFetch {
   }
 
 
-
-  updateUserInfo(name, about) {
-    let body = {
-      name,
-      about,
-    };
-    return this.makeFetch('/users/me', 'PATCH', 'application/json', body);
-  }
-
-  addNewCard(name, link) {
-    let body = {
-      name,
-      link
-    }
-    return this.makeFetch('/cards', 'POST', 'application/json', body);
-  }
-
-  deleteCard(id) {
-    return this.makeFetch(`/cards/${id}`, 'DELETE');
-  }
-
-  likeCard(id) {
-    return this.makeFetch(`/cards/like/${id}`, 'PUT');
-  }
-
-  dislikeCard(id) {
-    return this.makeFetch(`/cards/like/${id}`, 'DELETE');
-  }
-
-  changeAvatar(avatar) {
-    let body = {
-      avatar,
-    };
-    return this.makeFetch('/users/me/avatar', 'PATCH', 'application/json', body);
+  getSavedCards() {
+    return this.makeFetch('/articles');
   }
 }

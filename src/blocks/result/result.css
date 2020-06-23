@@ -7,6 +7,7 @@
 @import url(result__image.css);
 @import url(result__bookmark-container.css);
 @import url(result__prompt.css);
+@import url(result__prompt_saved.css);
 @import url(result__bookmark.css);
 @import url(result__info-container.css);
 @import url(result__date.css);
@@ -16,6 +17,9 @@
 @import url(result__showmore.css);
 @import url(result__link.css);
 @import url(result__error.css);
+@import url(result__deleted.css);
+@import url(result__keyword-container.css);
+@import url(result__keyword.css);
 
 
 .result {

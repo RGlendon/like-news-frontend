@@ -2,15 +2,25 @@ export const store = {
   isLoggedIn: false,
   currentKeyWord: '',
   currentArticles: [],
+  savedArticles: [],
 };
 
 
-export const isLoggedIn = (isLoggedIn) => {
-  return store.isLoggedIn = isLoggedIn;
-};
-export const setKeyWord = (value) => {
-  return store.currentKeyWord = value;
-};
-export const setArticles = (articles) => {
-  return store.currentArticles = articles;
-};
+export class StoreMethods {
+  isLoggedIn(isLoggedIn) {
+    return store.isLoggedIn = isLoggedIn;
+  }
+
+  setKeyWord(value) {
+    return store.currentKeyWord = value;
+  }
+
+  setCurrentArticles(articles) {
+    return store.currentArticles = articles;
+  }
+
+  setSavedtArticles(articles) {
+    return store.savedArticles = articles;
+  }
+}
+

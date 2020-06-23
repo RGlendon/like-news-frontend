@@ -5,3 +5,7 @@
 @import url(../common/button.css);
 @import url(../footer/footer.css);
 @import url(../result/result.css);
+
+@import url(../preloader/preloader.css);
+
+@import url(../common/elem-hidden.css);

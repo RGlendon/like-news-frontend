@@ -10,7 +10,7 @@ import initialCards from '../scripts/initialCards';
 import savedArticles from '../scripts/savedArticles';
 import ApiFetch from '../scripts/api/apiFetch';
 import ApiNews from "../scripts/api/apiNews";
-import { store, isLoggedIn, setKeyWord, setArticles } from "../scripts/configReduser";
+import { store, StoreMethods } from "../scripts/configReduser";
 
 const cardContainer = document.querySelector('.result__cards');
 const authForm = document.forms.auth;
@@ -20,6 +20,7 @@ const searchForm = document.forms.search;
 const api = new ApiFetch('http://localhost:3000/v1');
 const apiNews = new ApiNews();
 
+const storeMethods = new StoreMethods();
 const card = new Card();
 const cardList = new CardList(cardContainer, card, api);
 const popup = new Popup(document.querySelector('.popup'));
@@ -29,7 +30,7 @@ const overlay = new Overlay(document.querySelector('.overlay'));
 const validateAuthForm = new FormValidation(authForm);
 const validateRegForm = new FormValidation(registrationForm);
 
-let foundArticles = [];
+
 
 
 menu.activateCurrentLink();
@@ -46,9 +47,9 @@ Promise.all([
     // console.log(user[0].data.name);
     menu.hideAuthButton();
     menu.showNameButton(user[0].data.name);
-    menu.toggleSavedCard();
+    menu.showElement(true, '.header__link_articles');
     menu.showMenuButton();
-    isLoggedIn(true);
+    storeMethods.isLoggedIn(true);
   })
   .catch((err) => {
     console.dir(err);
@@ -76,7 +77,7 @@ function login(event) {
       menu.showNameButton(user.name);
       menu.toggleSavedCard();
       menu.showMenuButton();
-      isLoggedIn(true);
+      storeMethods.isLoggedIn(true);
       popup.close();
       overlay.close();
     })
@@ -92,7 +93,7 @@ function logout() {
       menu.showAuthButton();
       menu.hideNameButton();
       menu.toggleSavedCard();
-      isLoggedIn(false);
+      storeMethods.isLoggedIn(false);
     })
     .catch((err) => {
       console.log(err)
@@ -107,15 +108,15 @@ function searchNews(event) {
   cardList.renderError(false);
   cardList.renderLoading(true);
   cardList.showBtn(true);
-  setKeyWord(searchForm.elements.search.value);
+  storeMethods.setKeyWord(searchForm.elements.search.value);
   apiNews.getNews(searchForm.elements.search.value)
     .then((result) => {
-      console.log(result.articles)
+      console.log(result.articles);
       if (result.totalResults === 0) {
         cardList.renderOops(true);
       } else {
         // foundArticles.length = 0;
-        setArticles(result.articles);
+        storeMethods.setCurrentArticles(result.articles);
         // foundArticles = result.articles;
         // console.log(foundArticles);
         cardList.renderList(true);
@@ -125,7 +126,7 @@ function searchNews(event) {
     .catch((err) => {
       console.dir(err);
       cardList.renderError(true);
-      setArticles([])
+      storeMethods.setCurrentArticles([])
       // console.log(err);
     })
     .finally(() => {
@@ -151,12 +152,6 @@ document.addEventListener('click', (e) => {
     logout();
   }
 
-  if (e.target.matches('.popup__close') || e.target === overlay.overlay) {
-    popup.close();
-    overlay.close();
-    menu.showMenuButton();
-  }
-
   if (e.target.matches('.header__menu-icon_open')) {
     menu.open();
     overlay.open();
@@ -166,6 +161,11 @@ document.addEventListener('click', (e) => {
     overlay.close();
   }
 
+  if (e.target.matches('.popup__close') || e.target === overlay.overlay) {
+    popup.close();
+    overlay.close();
+    menu.showMenuButton();
+  }
 
   if (e.target.matches('.button')) {
     e.target.classList.add('button_active');

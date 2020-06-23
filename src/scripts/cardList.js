@@ -71,7 +71,7 @@ export default class CardList {
     this.textSizeDetermination(newCard);
   }
 
-  render(initialCards, opt, btn) {
+  render(initialCards, opt) {
     const show = opt ? opt.show : null;
     const type = opt ? opt.type : null;
 
@@ -104,7 +104,7 @@ export default class CardList {
   }
 
   eventHandler(event) {
-    if (event.target.classList.contains('result__bookmark') || event.target.matches('svg') || event.target.matches('path')) {
+    if (event.target.classList.contains('result__bookmark_save') || event.target.matches('svg') || event.target.matches('path')) {
       let button = event.target.closest('.result__bookmark');
       let currentCard = event.target.closest('.result__card');
       let cardNumber = currentCard.dataset.number;
@@ -117,6 +117,7 @@ export default class CardList {
         console.dir(data)
         this.api.likeArticle(data)
           .then((article) => {
+            debugger
             this.card.toggleLike(button);
             currentCard.dataset.id = article.data._id;
             console.dir(article)
