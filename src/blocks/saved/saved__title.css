@@ -1,0 +1,22 @@
+.saved__title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+
+  color: var(--color-gray-text);
+}
+
+
+@media all and (max-width: 768px) {
+  .saved__title {
+    font-size: 14px;
+    line-height: 24px;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .saved__title {
+    font-size: 12px;
+  }
+}

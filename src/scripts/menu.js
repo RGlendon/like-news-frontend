@@ -8,9 +8,14 @@ export default class Menu {
 
   open() {
     this.header.classList.add('header_menu-is-opened');
+    this.header.classList.remove('header_white');
   }
   close() {
     this.header.classList.remove('header_menu-is-opened');
+  }
+  closeWhiteMenu() {
+    this.close();
+    this.header.classList.add('header_white');
   }
 
   hideMenuButton() {
@@ -68,11 +73,11 @@ export default class Menu {
   transformLamp() {
     let currentElement = this.chooseCurrentLink();
     // let currentElementLeft = currentElement.getBoundingClientRect().left;
-    let currentElementLeft = currentElement.offsetLeft;
+    // let currentElementLeft = currentElement.offsetLeft;
 
     this.lamp.style.width = `${currentElement.offsetWidth}px`;
     // this.lamp.style.transform = `translateX(${currentElementLeft - this.menuLeft}px)`;
-    this.lamp.style.transform = `translateX(${currentElementLeft}px)`;
+    this.lamp.style.transform = `translateX(${currentElement.offsetLeft}px)`;
   };
 
   activateCurrentLink() {

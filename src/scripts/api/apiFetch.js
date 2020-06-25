@@ -20,7 +20,7 @@ export default class ApiFetch {
           return resp.json().then(err => Promise.reject(err));
         }
         return resp.json();
-      })
+      });
   }
 
 

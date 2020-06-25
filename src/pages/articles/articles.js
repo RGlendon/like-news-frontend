@@ -3,14 +3,11 @@ import './articles.css';
 import Card from '../../scripts/card';
 import CardList from '../../scripts/cardList';
 import Menu from '../../scripts/menu';
-// import Popup from '../../scripts/popup';
-// import FormValidation from '../../scripts/formValidation';
 import Overlay from '../../scripts/overlay';
-// import initialCards from '../scripts/initialCards';
-import savedArticles from '../../scripts/savedArticles';
 import ApiFetch from '../../scripts/api/apiFetch';
 import ApiNews from "../../scripts/api/apiNews";
-import {store, StoreMethods } from "../../scripts/configReduser";
+import SavedBlock from "../../scripts/saved";
+import {store, StoreMethods } from "../../scripts/commonReduser";
 
 const cardContainer = document.querySelector('.result__cards');
 
@@ -23,6 +20,7 @@ const cardList = new CardList(cardContainer, card, api);
 
 const menu = new Menu(document.querySelector('.header__menu'));
 const overlay = new Overlay(document.querySelector('.overlay'));
+const savedBlock = new SavedBlock(document.querySelector('.saved'));
 
 
 // let savedArticles = JSON.parse(localStorage.getItem('savedArticles'));
@@ -30,7 +28,7 @@ const overlay = new Overlay(document.querySelector('.overlay'));
 // menu.transformLamp();
 // cardList.render(savedArticles, {type: 'saved'});
 
-
+storeMethods.showPreloader('commonPreloader', true);
 Promise.all([
   // api.getInitialCards(),
   // authAPI.me()
@@ -41,17 +39,21 @@ Promise.all([
     console.log(cards)
     menu.showNameButton(user.data.name);
     menu.showMenuButton();
+    savedBlock.setName(user.data.name);
     // debugger
     storeMethods.isLoggedIn(true);
     storeMethods.setSavedtArticles(cards.data);
     cardList.render(store.savedArticles, {type: 'saved'});
+    savedBlock.setCountArticles(store.savedArticles);
+    savedBlock.setKeywords(store.savedArticles);
   })
   .catch((err) => {
     console.dir(err);
-    window.location.pathname = '/index.html';
+    // window.location.pathname = '/index.html';
   })
   .finally(() => {
     menu.activateCurrentLink();
+    storeMethods.showPreloader('commonPreloader', false);
   })
 
 
@@ -72,12 +74,14 @@ document.addEventListener('click', (e) => {
     logout();
   }
 
-  if (e.target.matches('.header__menu-icon_open')) {
+  if (e.target.matches('.header__menu-icon_open') || e.target.matches('.header__menu-icon_open rect')) {
     menu.open();
     overlay.open();
   }
-  if (e.target.matches('.header__menu-icon_close') || e.target === overlay.overlay) {
-    menu.close();
+  if (e.target.matches('.header__menu-icon_close')
+    || e.target.matches('.header__menu-icon_close path')
+    || e.target === overlay.overlay) {
+    menu.closeWhiteMenu();
     overlay.close();
   }
 
@@ -90,7 +94,7 @@ document.addEventListener('click', (e) => {
 
   if (e.target.matches('.result__showmore')) {
     console.log('показал новые карты');
-    cardList.render(store.currentArticles, {show: 'more'});
+    cardList.render(store.savedArticles, {type: 'saved', show: 'more'});
     // e.target.setAttribute('disabled', true);
   }
 

@@ -1,6 +1,7 @@
-import savedArticles from "./savedArticles";
-import initialCards from "./initialCards";
-import {store} from "./configReduser";
+import {store, StoreMethods} from "./commonReduser";
+
+const storeMethods = new StoreMethods();
+
 
 export default class CardList {
   constructor(container, card, api) {
@@ -92,35 +93,36 @@ export default class CardList {
       if (index >= from && index < to) this.addCard(card, {type, index});
     });
 
+    if (to >= initialCards.length) {
+      this.showBtn(false);
+    } else {
+      this.showBtn(true);
+    }
+
     window.addEventListener('resize', () => {
       this.container.children.forEach(card => {
         this.textSizeDetermination(card);
       })
     });
-
-    // console.log(this.container.children)
-    // if (to >= initialCards.length && btn) btn.setAttribute('disabled', true);
-    if (to >= initialCards.length) this.showBtn(false);
   }
 
   eventHandler(event) {
-    if (event.target.classList.contains('result__bookmark_save') || event.target.matches('svg') || event.target.matches('path')) {
-      let button = event.target.closest('.result__bookmark');
-      let currentCard = event.target.closest('.result__card');
-      let cardNumber = currentCard.dataset.number;
+    if (event.target.classList.contains('result__bookmark') || event.target.matches('svg') || event.target.matches('path')) {
+      const button = event.target.closest('.result__bookmark');
+      const currentCard = event.target.closest('.result__card');
+      const cardNumber = currentCard.dataset.number;
       // debugger
-      if (!button.matches('.result__bookmark_marked') && !button.disabled) {
+
+      if (button.matches('.result__bookmark_save') && !button.matches('.result__bookmark_marked') && !button.disabled) {
         const {
           urlToImage: image, publishedAt: date, title, description: text, url: link, source: {name: source}
         } = store.currentArticles[cardNumber];
         const data = {keyword: store.currentKeyWord, image, date, title, text, source, link};
-        console.dir(data)
+
         this.api.likeArticle(data)
           .then((article) => {
-            debugger
             this.card.toggleLike(button);
             currentCard.dataset.id = article.data._id;
-            console.dir(article)
           })
           .catch((err) => {
             console.dir(err)
@@ -138,11 +140,36 @@ export default class CardList {
           .catch((err) => {
             console.dir(err)
           });
-        // savedArticles.splice(savedArticles.indexOf(initialCards.find(item => item._id === +idCard)), 1);
-        // console.dir(savedArticles);
+
+      } else if (button.matches('.result__bookmark_delete')) {
+        const cardId = store.savedArticles[cardNumber]._id;
+
+        this.api.dislikeArticle(cardId)
+          .then((article) => {
+            this.card.removeCard(currentCard)
+          })
+          .catch((err) => {
+            console.dir(err)
+          });
+
+      } else if (button.matches('.result__bookmark_restore')) {
+        const { keyword, image, date, title, text, source, link } = store.savedArticles[cardNumber];
+        const data = {keyword, image, date, title, text, source, link};
+
+        this.api.likeArticle(data)
+          .then((article) => {
+            // debugger
+            this.card.restoreCard(currentCard);
+            storeMethods.changeId(cardNumber, article.data._id);
+            // store.savedArticles[cardNumber]._id = article.data._id;
+          })
+          .catch((err) => {
+            console.dir(err)
+          });
       }
     }
   }
+
 
   renderLoading(isLoading) {
     const preloader = document.querySelector('.preloader');

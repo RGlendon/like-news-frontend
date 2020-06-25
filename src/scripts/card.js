@@ -1,4 +1,4 @@
-import { store } from "./configReduser";
+import { store } from "./commonReduser";
 import notFoundImage from "../images/noPhoto.jpg";
 
 
@@ -92,10 +92,13 @@ console.log(store.isLoggedIn)
           }
 
             <button class="result__bookmark result__bookmark_restore elem-hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 438.5 438.5">
-                <path
-                  d="M431.2 230.8c-23.6-75.8-98.3-127.5-188-129V13.1c0-4.1-3.5-7.7-7.6-7.7-1.6 0-3 .5-4.6 1.5L3 172c-3.5 2.5-4 7.1-1.5 10.7l1.5 1.6L231 348a8 8 0 0010.7-1.5c1-1.6 1.6-3.1 1.6-4.6v-88.1c55.3 0 101.9 26.1 118.2 65.5 13.9 33.8 2.6 70.2-30.2 100.4-3 3-3.6 7.7-.5 10.7a8.2 8.2 0 005.6 2.6h6.2c1.5 0 3-.5 4-1.5 75.4-49.7 107.6-127 84.6-200.7z"/>
-              </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M398 18a8 8 0 00-6-2H152a40 40 0 00-40 40v97l-37 33a8 8 0 000 12l29 26v114a64 64 0 01-24-50 8 8 0 00-8-8H24a8 8 0 00-8 8 128 128 0 0096 124v44a40 40 0 0040 40h304a40 40 0 0040-40V120a8 8 0 00-2-6zm2 25l69 69h-45a24 24 0 01-24-24zM32 296h32a80 80 0 1080-88 8 8 0 00-8 8v14l-44-38 44-38v14a8 8 0 008 8A112 112 0 1132 296zm88 51V238l19 16a8 8 0 0013-6v-23a64 64 0 11-32 122zm360 109a24 24 0 01-24 24H152a24 24 0 01-24-24v-41a128 128 0 00144-127c0-68-53-124-120-128v-24a8 8 0 00-13-6l-11 9V56a24 24 0 0124-24h232v56a40 40 0 0040 40h56z"/>
+                </svg>             
+<!--              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 438.5 438.5">-->
+<!--                <path-->
+<!--                  d="M431.2 230.8c-23.6-75.8-98.3-127.5-188-129V13.1c0-4.1-3.5-7.7-7.6-7.7-1.6 0-3 .5-4.6 1.5L3 172c-3.5 2.5-4 7.1-1.5 10.7l1.5 1.6L231 348a8 8 0 0010.7-1.5c1-1.6 1.6-3.1 1.6-4.6v-88.1c55.3 0 101.9 26.1 118.2 65.5 13.9 33.8 2.6 70.2-30.2 100.4-3 3-3.6 7.7-.5 10.7a8.2 8.2 0 005.6 2.6h6.2c1.5 0 3-.5 4-1.5 75.4-49.7 107.6-127 84.6-200.7z"/>-->
+<!--              </svg>-->
             </button>
          </div>
           
@@ -112,7 +115,32 @@ console.log(store.isLoggedIn)
   }
 
   toggleLike(btn) {
-
     btn.classList.toggle('result__bookmark_marked');
+  }
+
+  showElement(card, isShown, elem) {
+    const element = card.querySelector(`${elem}`);
+
+    if (isShown) {
+      element.classList.remove('elem-hidden');
+    } else {
+      element.classList.add('elem-hidden');
+    }
+  }
+
+  removeCard(currentCard) {
+    this.showElement(currentCard, false, '.result__bookmark_delete');
+    this.showElement(currentCard, true, '.result__bookmark_restore');
+    this.showElement(currentCard, true, '.result__deleted');
+    this.showElement(currentCard, false, '.result__prompt-text_delete');
+    this.showElement(currentCard, true, '.result__prompt-text_restore');
+  }
+
+  restoreCard(currentCard) {
+    this.showElement(currentCard, true, '.result__bookmark_delete');
+    this.showElement(currentCard, false, '.result__bookmark_restore');
+    this.showElement(currentCard, false, '.result__deleted');
+    this.showElement(currentCard, true, '.result__prompt-text_delete');
+    this.showElement(currentCard, false, '.result__prompt-text_restore');
   }
 }

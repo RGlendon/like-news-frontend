@@ -7,10 +7,9 @@ import Popup from '../scripts/popup';
 import FormValidation from '../scripts/formValidation';
 import Overlay from '../scripts/overlay';
 import initialCards from '../scripts/initialCards';
-import savedArticles from '../scripts/savedArticles';
 import ApiFetch from '../scripts/api/apiFetch';
 import ApiNews from "../scripts/api/apiNews";
-import { store, StoreMethods } from "../scripts/configReduser";
+import {store, StoreMethods} from "../scripts/commonReduser";
 
 const cardContainer = document.querySelector('.result__cards');
 const authForm = document.forms.auth;
@@ -31,12 +30,11 @@ const validateAuthForm = new FormValidation(authForm);
 const validateRegForm = new FormValidation(registrationForm);
 
 
-
-
 menu.activateCurrentLink();
 // cardList.render(initialCards);
 
-
+// storeMethods.showElement('commonPreloader', true);
+storeMethods.showPreloader('commonPreloader', true);
 Promise.all([
   // api.getInitialCards(),
   // authAPI.me()
@@ -50,9 +48,13 @@ Promise.all([
     menu.showElement(true, '.header__link_articles');
     menu.showMenuButton();
     storeMethods.isLoggedIn(true);
+    // storeMethods.showPreloader('commonPreloader', false);
   })
   .catch((err) => {
     console.dir(err);
+  })
+  .finally(() => {
+    storeMethods.showPreloader('commonPreloader', false);
   });
 
 
@@ -140,6 +142,7 @@ registrationForm.addEventListener('submit', registration);
 authForm.addEventListener('submit', login);
 searchForm.addEventListener('submit', searchNews);
 
+
 document.addEventListener('click', (e) => {
   if (e.target.matches('.header__auth_enter')) {
     menu.close();
@@ -152,11 +155,13 @@ document.addEventListener('click', (e) => {
     logout();
   }
 
-  if (e.target.matches('.header__menu-icon_open')) {
+  if (e.target.matches('.header__menu-icon_open') || e.target.matches('.header__menu-icon_open rect')) {
     menu.open();
     overlay.open();
   }
-  if (e.target.matches('.header__menu-icon_close') || e.target === overlay.overlay) {
+  if (e.target.matches('.header__menu-icon_close')
+    || e.target.matches('.header__menu-icon_close path')
+    || e.target === overlay.overlay) {
     menu.close();
     overlay.close();
   }
@@ -177,10 +182,6 @@ document.addEventListener('click', (e) => {
     console.log('показал новые карты');
     cardList.render(store.currentArticles, {show: 'more'});
     // e.target.setAttribute('disabled', true);
-  }
-
-  if (e.target.matches('.menu__link')) {
-    localStorage.setItem('savedArticles', JSON.stringify(savedArticles))
   }
 });
 
