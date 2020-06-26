@@ -112,7 +112,7 @@ function searchNews(event) {
     })
     .catch((err) => {
       console.dir(err);
-      cardList.showElement('errorBlock', false);
+      cardList.showElement('errorBlock', true);
       storeMethods.setCurrentArticles([])
     })
     .finally(() => {
