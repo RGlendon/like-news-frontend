@@ -55,9 +55,7 @@
 .header_menu-is-opened {
   background-color: var(--color-main-primary);
 }
-.header_menu-is-opened .header__overlay {
-  display: block;
-}
+
 .header_menu-is-opened .header__menu-icon_open {
   display: none;
 }

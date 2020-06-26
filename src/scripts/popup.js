@@ -1,73 +1,51 @@
 export default class Popup {
-  constructor(popup) {
+  constructor(popup, overlay) {
     this.popup = popup;
+    this.overlay = overlay;
     this.button = this.popup.querySelector('.popup__button') || undefined;
     this.popupAuth = this.popup.querySelector('.popup__content-auth');
     this.popupReg = this.popup.querySelector('.popup__content-registration');
     this.popupSuccess = this.popup.querySelector('.popup__content-success');
 
     this.popup.addEventListener('click', (event) => {
-      // if (event.target.matches('.popup__close') || event.target === this.overlay) {
-      //   this.close();
-      // }
       if (event.target.matches('.popup__option_registration')) {
-        this.closeAuth();
+        this.showElement('popupAuth', false);
         this.openReg();
         this.resetForms();
       }
       if (event.target.matches('.popup__option_enter')) {
-        this.closeReg();
-        this.closeSuccess();
+        this.showElement('popupReg', false);
+        this.showElement('popupSuccess', false);
         this.openAuth();
         this.resetForms();
       }
-      // if (event.target.matches('.popup__button_registration')) {
-      //   event.preventDefault();
-      //   this.closeReg();
-      //   this.openSuccess();
-      // }
     });
   }
 
-
   open() {
-    this.popup.classList.add('popup_is-opened');
+    this.showElement('popup', true);
+    this.showElement('overlay', true);
     // не удаляются все error.message, поэтому дополнительно чистим форму
     this.resetForms();
   }
 
   close() {
-    this.popup.classList.remove('popup_is-opened');
-    this.closeAuth();
-    this.closeReg();
-    this.closeSuccess();
+    this.showElement('popup', false);
+    this.showElement('popupAuth', false);
+    this.showElement('popupReg', false);
+    this.showElement('popupSuccess', false);
     this.resetForms();
+    this.showElement('overlay', false);
   }
 
   openAuth() {
-    this.popupAuth.classList.add('popup__content_is-opened');
+    this.showElement('popupAuth', true);
     this.popupAuth.querySelector('.popup__input').focus();
   }
 
-  closeAuth() {
-    this.popupAuth.classList.remove('popup__content_is-opened');
-  }
-
   openReg() {
-    this.popupReg.classList.add('popup__content_is-opened');
+    this.showElement('popupReg', true);
     this.popupReg.querySelector('.popup__input').focus();
-  }
-
-  closeReg() {
-    this.popupReg.classList.remove('popup__content_is-opened');
-  }
-
-  openSuccess() {
-    this.popupSuccess.classList.add('popup__content_is-opened');
-  }
-
-  closeSuccess() {
-    this.popupSuccess.classList.remove('popup__content_is-opened');
   }
 
   resetForms() {
@@ -81,13 +59,13 @@ export default class Popup {
     });
   }
 
-  // renderLoading(isLoading) {
-  //   const button = this.popup.querySelector('.popup__button');
-  //
-  //   if (isLoading) {
-  //     button.textContent = 'Загрузка...';
-  //   } else {
-  //     button.textContent = this.buttonInitialValue;
-  //   }
-  // }
+  showElement(elem, isShown) {
+    const element = this[elem];
+
+    if (isShown) {
+      element.classList.remove('elem-hidden');
+    } else {
+      element.classList.add('elem-hidden');
+    }
+  }
 }

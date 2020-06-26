@@ -5,56 +5,48 @@ import CardList from '../scripts/cardList';
 import Menu from '../scripts/menu';
 import Popup from '../scripts/popup';
 import FormValidation from '../scripts/formValidation';
-import Overlay from '../scripts/overlay';
-import initialCards from '../scripts/initialCards';
 import ApiFetch from '../scripts/api/apiFetch';
 import ApiNews from "../scripts/api/apiNews";
-import {store, StoreMethods} from "../scripts/commonReduser";
+import {store, storeMethods} from "../scripts/commonReduser";
 
-const cardContainer = document.querySelector('.result__cards');
+const apiNews = new ApiNews();
+const api = new ApiFetch('http://localhost:3000/v1');
+
+const constants = {...store.constants};
+
+const card = new Card();
+const cardList = new CardList(document.querySelector('.result__cards'), card, api, store, storeMethods);
+const menu = new Menu(document.querySelector('.header__menu'), constants.overlay);
+const popup = new Popup(document.querySelector('.popup'), constants.overlay);
+// можно передать storeMethods.modifyElement для управления всеми элементами
+// const menu = new Menu(document.querySelector('.header__menu'), storeMethods.modifyElement);
+
 const authForm = document.forms.auth;
 const registrationForm = document.forms.registration;
 const searchForm = document.forms.search;
-
-const api = new ApiFetch('http://localhost:3000/v1');
-const apiNews = new ApiNews();
-
-const storeMethods = new StoreMethods();
-const card = new Card();
-const cardList = new CardList(cardContainer, card, api);
-const popup = new Popup(document.querySelector('.popup'));
-const menu = new Menu(document.querySelector('.header__menu'));
-const overlay = new Overlay(document.querySelector('.overlay'));
 
 const validateAuthForm = new FormValidation(authForm);
 const validateRegForm = new FormValidation(registrationForm);
 
 
-menu.activateCurrentLink();
-// cardList.render(initialCards);
+storeMethods.modifyElement('commonPreloader', 'common-preloader_hidden', false);
 
-// storeMethods.showElement('commonPreloader', true);
-storeMethods.showPreloader('commonPreloader', true);
 Promise.all([
-  // api.getInitialCards(),
-  // authAPI.me()
   api.getUserInfo()
 ])
   .then((user) => {
-    // console.log(result[0]);
-    // console.log(user[0].data.name);
-    menu.hideAuthButton();
+    menu.showElement('authButton', false);
     menu.showNameButton(user[0].data.name);
-    menu.showElement(true, '.header__link_articles');
-    menu.showMenuButton();
+    menu.showElement('savedArticlesLink', true);
+    menu.showElement('openIcon', true);
     storeMethods.isLoggedIn(true);
-    // storeMethods.showPreloader('commonPreloader', false);
   })
   .catch((err) => {
     console.dir(err);
   })
   .finally(() => {
-    storeMethods.showPreloader('commonPreloader', false);
+    menu.activateCurrentLink();
+    storeMethods.modifyElement('commonPreloader', 'common-preloader_hidden', true);
   });
 
 
@@ -62,12 +54,11 @@ function registration(event) {
   event.preventDefault();
   api.signup(registrationForm.elements.email.value, registrationForm.elements.password.value, registrationForm.elements.name.value)
     .then((result) => {
-      popup.closeReg();
-      popup.openSuccess();
+      popup.showElement('popupReg', false);
+      popup.showElement('popupSuccess', true);
     })
     .catch((err) => {
-      let message = err.message;
-      validateRegForm.showCommonError(message)
+      validateRegForm.showCommonError(err.message)
     })
 }
 
@@ -75,26 +66,24 @@ function login(event) {
   event.preventDefault();
   api.signin(authForm.elements.email.value, authForm.elements.password.value)
     .then((user) => {
-      menu.hideAuthButton();
+      menu.showElement('authButton', false);
       menu.showNameButton(user.name);
-      menu.toggleSavedCard();
-      menu.showMenuButton();
+      menu.showElement('savedArticlesLink', true);
+      menu.showElement('openIcon', true);
       storeMethods.isLoggedIn(true);
       popup.close();
-      overlay.close();
     })
     .catch((err) => {
-      const message = err.message;
-      validateAuthForm.showCommonError(message)
+      validateAuthForm.showCommonError(err.message)
     })
 }
 
 function logout() {
   api.logout()
     .then((user) => {
-      menu.showAuthButton();
-      menu.hideNameButton();
-      menu.toggleSavedCard();
+      menu.showElement('authButton', true);
+      menu.showElement('nameButton', false);
+      menu.showElement('savedArticlesLink', false);
       storeMethods.isLoggedIn(false);
     })
     .catch((err) => {
@@ -104,52 +93,42 @@ function logout() {
 
 function searchNews(event) {
   event.preventDefault();
-  cardList.renderResult(true);
-  cardList.renderList(false);
-  cardList.renderOops(false);
-  cardList.renderError(false);
-  cardList.renderLoading(true);
-  cardList.showBtn(true);
+  cardList.showElement('resultBlock', true);
+  cardList.showElement('preloader', true);
+  cardList.showElement('cardsWrapper', false);
+  cardList.showElement('oops', false);
+  cardList.showElement('errorBlock', false);
   storeMethods.setKeyWord(searchForm.elements.search.value);
+
   apiNews.getNews(searchForm.elements.search.value)
     .then((result) => {
-      console.log(result.articles);
       if (result.totalResults === 0) {
-        cardList.renderOops(true);
+        cardList.showElement('oops', true);
       } else {
-        // foundArticles.length = 0;
         storeMethods.setCurrentArticles(result.articles);
-        // foundArticles = result.articles;
-        // console.log(foundArticles);
-        cardList.renderList(true);
+        cardList.showElement('cardsWrapper', true);
         cardList.render(store.currentArticles);
       }
     })
     .catch((err) => {
       console.dir(err);
-      cardList.renderError(true);
+      cardList.showElement('errorBlock', false);
       storeMethods.setCurrentArticles([])
-      // console.log(err);
     })
     .finally(() => {
       searchForm.reset();
-      cardList.renderLoading(false);
+      cardList.showElement('preloader', false);
     });
 
 }
 
-registrationForm.addEventListener('submit', registration);
-authForm.addEventListener('submit', login);
-searchForm.addEventListener('submit', searchNews);
 
-
-document.addEventListener('click', (e) => {
+function clickHandler(e) {
   if (e.target.matches('.header__auth_enter')) {
     menu.close();
+    menu.showElement('openIcon', false);
     popup.open();
     popup.openAuth();
-    menu.hideMenuButton();
-    overlay.open();
   }
   if (e.target.matches('.header__auth_name')) {
     logout();
@@ -157,19 +136,15 @@ document.addEventListener('click', (e) => {
 
   if (e.target.matches('.header__menu-icon_open') || e.target.matches('.header__menu-icon_open rect')) {
     menu.open();
-    overlay.open();
-  }
-  if (e.target.matches('.header__menu-icon_close')
-    || e.target.matches('.header__menu-icon_close path')
-    || e.target === overlay.overlay) {
-    menu.close();
-    overlay.close();
   }
 
-  if (e.target.matches('.popup__close') || e.target === overlay.overlay) {
+  if (e.target.matches('.header__menu-icon_close') || e.target.matches('.header__menu-icon_close path') || e.target === constants.overlay) {
+    menu.close();
+  }
+
+  if (e.target.matches('.popup__close') || e.target === constants.overlay) {
     popup.close();
-    overlay.close();
-    menu.showMenuButton();
+    menu.showElement('openIcon', true);
   }
 
   if (e.target.matches('.button')) {
@@ -179,24 +154,28 @@ document.addEventListener('click', (e) => {
 
 
   if (e.target.matches('.result__showmore')) {
-    console.log('показал новые карты');
     cardList.render(store.currentArticles, {show: 'more'});
-    // e.target.setAttribute('disabled', true);
   }
-});
+}
 
 
-document.addEventListener('keydown', (e) => {
-  if (popup.popup.matches('.popup_is-opened') && e.key === "Escape") {
+function keydownHandler(e) {
+  if (!popup.popup.matches('.elem-hidden') && e.key === "Escape") {
     popup.close();
-    overlay.close();
-    menu.showMenuButton();
+    menu.showElement('openIcon', true);
   }
   if (menu.header.matches('.header_menu-is-opened') && e.key === "Escape") {
     menu.close();
-    overlay.close();
   }
-});
+}
+
+
+registrationForm.addEventListener('submit', registration);
+authForm.addEventListener('submit', login);
+searchForm.addEventListener('submit', searchNews);
+
+document.addEventListener('click', clickHandler);
+document.addEventListener('keydown', keydownHandler);
 
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -1,12 +1,10 @@
 @import url(popup__close.css);
 @import url(popup__content.css);
-@import url(popup__content_is-opened.css);
 @import url(popup__title.css);
 @import url(popup__form.css);
 @import url(popup__label.css);
 @import url(popup__input.css);
 @import url(popup__button.css);
-@import url(popup_is-opened.css);
 @import url(popup__error-message.css);
 @import url(popup__error-message_common.css);
 @import url(../common/overlay.css);
@@ -23,7 +21,7 @@
 
   transform: translate(-50%, -50%);
   z-index: 3;
-  display: none;
+  display: flex;
   width: 430px;
   /*min-height: 380px;*/
   background-color: var(--color-main-white);

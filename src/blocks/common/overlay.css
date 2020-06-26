@@ -7,10 +7,5 @@
   background: #000;
   opacity: 0.5;
 
-  display: none;
   z-index: 2;
-}
-
-.overlay_is-opened {
-  display: block;
 }

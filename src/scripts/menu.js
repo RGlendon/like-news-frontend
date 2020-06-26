@@ -1,52 +1,41 @@
 export default class Menu {
-  constructor(menu) {
+  constructor(menu, overlay) {
     this.menu = menu;
-    // this.menuLeft = this.menu.getBoundingClientRect().left;
+    this.overlay = overlay;
     this.header = this.menu.parentElement;
+    this.openIcon = this.header.querySelector('.header__menu-icon_open');
+    this.authButton = this.header.querySelector('.header__auth_enter');
+    this.nameButton = this.header.querySelector('.header__auth_name');
+    this.mainLink = this.header.querySelector('.header__link_main');
+    this.savedArticlesLink = this.header.querySelector('.header__link_articles');
     this.lamp = document.querySelector('.header__lamp');
   }
+
 
   open() {
     this.header.classList.add('header_menu-is-opened');
     this.header.classList.remove('header_white');
+    this.showElement('overlay', true);
   }
+
   close() {
     this.header.classList.remove('header_menu-is-opened');
+    this.showElement('overlay', false);
   }
+
   closeWhiteMenu() {
     this.close();
     this.header.classList.add('header_white');
   }
 
-  hideMenuButton() {
-    this.header.querySelector('.header__menu-icon_open').classList.add('elem-hidden');
-  }
-  showMenuButton() {
-    this.header.querySelector('.header__menu-icon_open').classList.remove('elem-hidden');
-  }
-
-  hideAuthButton() {
-    this.header.querySelector('.header__auth_enter').classList.add('elem-hidden');
-  }
-  showAuthButton() {
-    this.header.querySelector('.header__auth_enter').classList.remove('elem-hidden');
-  }
-
   showNameButton(name) {
-    const nameButton = this.header.querySelector('.header__auth_name');
-    nameButton.classList.remove('elem-hidden');
-    nameButton.firstChild.textContent = name;
-  }
-  hideNameButton() {
-    this.header.querySelector('.header__auth_name').classList.add('elem-hidden');
+    this.showElement('nameButton', true);
+    this.nameButton.firstChild.textContent = name;
   }
 
-  toggleSavedCard() {
-    this.header.querySelector('.header__link_articles').classList.toggle('elem-hidden');
-  }
 
-  showElement(isShown, elem) {
-    const element = document.querySelector(`${elem}`);
+  showElement(elem, isShown) {
+    const element = this[elem];
 
     if (isShown) {
       element.classList.remove('elem-hidden');
@@ -56,35 +45,27 @@ export default class Menu {
   }
 
 
-  chooseCurrentLink() {
+  _chooseCurrentLink() {
     let currentPath = window.location.pathname;
-    // console.log(currentPath)
-    return (currentPath === '/index.html' || currentPath === '/')
-      ? document.querySelector('.header__link_main')
-      : document.querySelector('.header__link_articles');
+    return (currentPath === '/index.html' || currentPath === '/') ? this.mainLink : this.savedArticlesLink;
   }
-  activateLink() {
+
+  _activateLink() {
     this.header.querySelectorAll('.header__menu .menu__link').forEach((link) => {
-      // console.log(link)
       link.classList.remove('header__link_active');
     });
-    this.chooseCurrentLink().classList.add('header__link_active');
+    this._chooseCurrentLink().classList.add('header__link_active');
   }
-  transformLamp() {
-    let currentElement = this.chooseCurrentLink();
-    // let currentElementLeft = currentElement.getBoundingClientRect().left;
-    // let currentElementLeft = currentElement.offsetLeft;
 
+  _transformLamp() {
+    let currentElement = this._chooseCurrentLink();
     this.lamp.style.width = `${currentElement.offsetWidth}px`;
-    // this.lamp.style.transform = `translateX(${currentElementLeft - this.menuLeft}px)`;
     this.lamp.style.transform = `translateX(${currentElement.offsetLeft}px)`;
   };
 
   activateCurrentLink() {
-    this.activateLink();
-    this.transformLamp();
+    this._activateLink();
+    this._transformLamp();
   }
-
-
 }
 

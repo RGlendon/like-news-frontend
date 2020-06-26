@@ -13,13 +13,13 @@
     <img class="preloader__gif" src="<%=require('../images/loader.gif').default%>" alt="поиск">
   </div>
 
-  <div class="overlay"></div>
+  <div class="overlay elem-hidden"></div>
 
 
-  <div class="popup">
+  <div class="popup elem-hidden">
     <img src="<%=require('../images/close.svg').default%>" alt="закрыть" class="popup__close">
 
-    <div class="popup__content popup__content-auth">
+    <div class="popup__content popup__content-auth elem-hidden">
       <h3 class="popup__title">Вход</h3>
       <form class="popup__form" name="auth" novalidate>
         <div class="popup__input-container">
@@ -39,7 +39,7 @@
       <p class="popup__or">или <span class="popup__option popup__option_registration">Зарегистрироваться</span></p>
     </div>
 
-    <div class="popup__content popup__content-registration">
+    <div class="popup__content popup__content-registration elem-hidden">
       <h3 class="popup__title">Регистрация</h3>
       <form class="popup__form" name="registration" novalidate>
         <div class="popup__input-container">
@@ -65,7 +65,7 @@
       <p class="popup__or">или <span class="popup__option popup__option_enter">Войти</span></p>
     </div>
 
-    <div class="popup__content popup__content-success">
+    <div class="popup__content popup__content-success elem-hidden">
       <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
       <p class="popup__or popup__or_enter"><span class="popup__option popup__option_enter">Выполнить вход</span></p>
     </div>
@@ -155,7 +155,7 @@
     <h2 class="result__error elem-hidden">Во время запроса произошла ошибка. Возможно, проблема с соединением или
       сервер недоступен. Подождите немного и попробуйте ещё раз</h2>
 
-    <div class="result__wrapper elem-hidden">
+    <div class="result__cards-wrapper elem-hidden">
       <!--    <div class="result__wrapper">-->
       <h2 class="result__title">Результаты поиска</h2>
       <div class="result__cards">
