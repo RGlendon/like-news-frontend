@@ -1,0 +1,31 @@
+.result__bookmark-container {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+
+  height: 40px;
+  display: flex;
+}
+
+.result__bookmark-container:hover .result__bookmark {
+  stroke: var(--color-main-primary);
+}
+
+.result__bookmark-container:hover .result__prompt {
+  display: flex;
+}
+
+
+@media all and (max-width: 1440px) {
+  .result__bookmark-container {
+    top: calc(8px + (24 - 8)*(100vw - 768px)/(1440 - 768));
+    right: calc(8px + (24 - 8)*(100vw - 768px)/(1440 - 768));
+  }
+}
+
+@media all and (max-width: 768px) {
+  .result__bookmark-container {
+    top: 8px;
+    right: 8px;
+  }
+}

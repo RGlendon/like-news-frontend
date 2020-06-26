@@ -1,0 +1,6 @@
+.result__card {
+  background: var(--color-main-white);
+  border-radius: 16px;
+
+  position: relative;
+}

@@ -1,0 +1,11 @@
+.footer__container {
+  display: flex;
+}
+
+
+/*@media all and (max-width: 650px) {*/
+/*  .footer__container {*/
+/*    width: 80%;*/
+/*    justify-content: space-between;*/
+/*  }*/
+/*}*/
