@@ -1,8 +1,17 @@
 import { store } from "./commonReduser";
+import { sanitize, validateUrl } from "./helpers/validations";
 import notFoundImage from "../images/noPhoto.jpg";
 
 
 export default class Card {
+  _dateConversion(str) {
+      const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+      const timeStamp = Date.parse(str);
+      const date = new Date(timeStamp);
+
+      return `${date.getDate()} ${months[date.getMonth()]}, ${date.getFullYear()}`;
+    }
+
   create(card, type) {
     const {
       urlToImage = card.image,
@@ -13,51 +22,19 @@ export default class Card {
       source: {name = card.source},
       keyword,
     } = card;
-// debugger
     const container = document.createElement('div');
-
-    function sanitarize(string) {
-      const map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#x27;',
-        '/': '&#x2F;',
-      };
-      const reg = /[&<>"'/]/ig;
-      return string ? string.replace(reg, (match) => (map[match])) : '';
-    }
-
-
-
-    function dateConversion(str) {
-      const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-      const timeStamp = Date.parse(str);
-      const date = new Date(timeStamp);
-
-      return `${date.getDate()} ${months[date.getMonth()]}, ${date.getFullYear()}`;
-    }
-
-    function validateUrl(str) {
-      const regExp = /https?:\/\/(www\.)?(\w+(-\w+)*(\.\w+(-\w+)*)*\.[a-z]{2,}|(\d\d?|1\d\d|2[0-5][0-5])(\.(\d\d?|1\d\d|2[0-5][0-5])){3})(:\d{2,5})?([0-9a-z\/]+)?#?/
-      return regExp.test(str);
-    }
-
-    // console.log(validateUrl(urlToImage));
-console.log(store.isLoggedIn)
 
     container.insertAdjacentHTML('beforeend',
       `<div class="result__card">
-        <a class="result__link" href="${sanitarize(url)}" target="_blank">
-          <img class="result__image" src="${validateUrl(urlToImage) ? sanitarize(urlToImage) : notFoundImage}" alt="фото">
+        <a class="result__link" href="${sanitize(url)}" target="_blank">
+          <img class="result__image" src="${validateUrl(urlToImage) ? sanitize(urlToImage) : notFoundImage}" alt="фото">
           <div class="result__info-container">
             <div class="result__info-wrapper">
-              <p class="result__date">${dateConversion(sanitarize(publishedAt))}</p>
-              <h3 class="result__card-title">${sanitarize(title)}</h3>
-              <p class="result__description">${sanitarize(description)}</p>
+              <p class="result__date">${this._dateConversion(sanitize(publishedAt))}</p>
+              <h3 class="result__card-title">${sanitize(title)}</h3>
+              <p class="result__description">${sanitize(description)}</p>
             </div>
-            <p class="result__publisher">${sanitarize(name) || 'источник не указан'}</p>
+            <p class="result__publisher">${sanitize(name) || 'источник не указан'}</p>
           </div>
         </a>
         
@@ -104,7 +81,7 @@ console.log(store.isLoggedIn)
           
           ${type === 'saved'
             ? `<div class="result__keyword-container">
-                 <p class="result__keyword">${sanitarize(keyword)}</p>
+                 <p class="result__keyword">${sanitize(keyword)}</p>
                </div>`
             : ''}          
           
@@ -118,7 +95,7 @@ console.log(store.isLoggedIn)
     btn.classList.toggle('result__bookmark_marked');
   }
 
-  showElement(card, isShown, elem) {
+  _showElement(card, isShown, elem) {
     const element = card.querySelector(`${elem}`);
 
     if (isShown) {
@@ -129,18 +106,18 @@ console.log(store.isLoggedIn)
   }
 
   removeCard(currentCard) {
-    this.showElement(currentCard, false, '.result__bookmark_delete');
-    this.showElement(currentCard, true, '.result__bookmark_restore');
-    this.showElement(currentCard, true, '.result__deleted');
-    this.showElement(currentCard, false, '.result__prompt-text_delete');
-    this.showElement(currentCard, true, '.result__prompt-text_restore');
+    this._showElement(currentCard, false, '.result__bookmark_delete');
+    this._showElement(currentCard, true, '.result__bookmark_restore');
+    this._showElement(currentCard, true, '.result__deleted');
+    this._showElement(currentCard, false, '.result__prompt-text_delete');
+    this._showElement(currentCard, true, '.result__prompt-text_restore');
   }
 
   restoreCard(currentCard) {
-    this.showElement(currentCard, true, '.result__bookmark_delete');
-    this.showElement(currentCard, false, '.result__bookmark_restore');
-    this.showElement(currentCard, false, '.result__deleted');
-    this.showElement(currentCard, true, '.result__prompt-text_delete');
-    this.showElement(currentCard, false, '.result__prompt-text_restore');
+    this._showElement(currentCard, true, '.result__bookmark_delete');
+    this._showElement(currentCard, false, '.result__bookmark_restore');
+    this._showElement(currentCard, false, '.result__deleted');
+    this._showElement(currentCard, true, '.result__prompt-text_delete');
+    this._showElement(currentCard, false, '.result__prompt-text_restore');
   }
 }
