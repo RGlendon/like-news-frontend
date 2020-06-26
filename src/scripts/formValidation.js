@@ -1,5 +1,5 @@
 const {isEmail} = require('validator');
-import {validatePassword} from './helpers/validations';
+import { validatePassword } from './helpers/validations';
 
 const errorMessage = {
   must: 'Это обязательное поле',

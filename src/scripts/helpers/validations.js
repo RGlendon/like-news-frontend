@@ -3,7 +3,12 @@ export const validatePassword = (value) => {
   return regExp.test(value);
 };
 
-export const sanitarize = (string) => {
+export const validateUrl = (str) => {
+  const regExp = /https?:\/\/(www\.)?(\w+(-\w+)*(\.\w+(-\w+)*)*\.[a-z]{2,}|(\d\d?|1\d\d|2[0-5][0-5])(\.(\d\d?|1\d\d|2[0-5][0-5])){3})(:\d{2,5})?([0-9a-z\/]+)?#?/
+  return regExp.test(str);
+};
+
+export const sanitize = (string) => {
   const map = {
     '&': '&amp;',
     '<': '&lt;',
@@ -13,18 +18,5 @@ export const sanitarize = (string) => {
     '/': '&#x2F;',
   };
   const reg = /[&<>"'/]/ig;
-  return string.replace(reg, (match) => (map[match]));
-};
-
-// const validateId = (value) => {
-//   // console.log(mongoose.Types.ObjectId.isValid(value))
-//   if (!mongoose.Types.ObjectId.isValid(value)) {
-//     throw new Error('некорректный id статьи');
-//   }
-//   return value;
-// };
-
-export const validateUrl = (str) => {
-  const regExp = /https?:\/\/(www\.)?(\w+(-\w+)*(\.\w+(-\w+)*)*\.[a-z]{2,}|(\d\d?|1\d\d|2[0-5][0-5])(\.(\d\d?|1\d\d|2[0-5][0-5])){3})(:\d{2,5})?([0-9a-z\/]+)?#?/
-  return regExp.test(str);
+  return string ? string.replace(reg, (match) => (map[match])) : '';
 };
