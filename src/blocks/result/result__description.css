@@ -11,6 +11,10 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
   color: var(--color-main-primary);
 }
 

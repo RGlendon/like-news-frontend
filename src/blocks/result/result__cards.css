@@ -3,7 +3,7 @@
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 576px;
   grid-gap: 16px;
-  margin-top: 64px;
+
 }
 
 @media all and (max-width: 1440px) {
@@ -22,6 +22,12 @@
 @media all and (max-width: 650px) {
   .result__cards {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media all and (max-width: 350px) {
+  .result__cards {
+    grid-template-columns: 1fr;
   }
 }
 

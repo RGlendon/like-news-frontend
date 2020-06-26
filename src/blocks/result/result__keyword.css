@@ -1,0 +1,16 @@
+.result__keyword {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+
+  background-color: var(--color-main-white);
+
+  color: #000000;
+
+  border-radius: 10px;
+}

@@ -7,31 +7,31 @@
 const initialCards = [
   {
     _id: 1,
-    urlToImage: 'https://i.pinimg.com/originals/c8/97/48/c8974887ba65129e98f3537a10863d4a.jpg',
-    publishedAt: '1 августа, 2019',
+    urlToImage: '',
+    publishedAt: '<b>Жирный</b>',
     title: '«Первозданнаяваываываsdfsdf тайга»: новый фотопроект Игоря Шпиленка',
     description: `В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система 
     национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.`,
-    'source.name': 'Лента.ру',
+    source: {name: 'Лента.ру'},
   },
   {
     _id: 2,
     urlToImage: 'https://avatars.mds.yandex.net/get-zen_doc/1900370/pub_5de43ccb8f011100ae5a1d8b_5de43cf0f73d9d00ae14b94c/scale_1200',
-    publishedAt: '2 августа, 2019',
+    publishedAt: '2020-06-12T19:04:17Z',
     title: 'Лесные огоньки: история одной фотографии',
     description: `Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы 
     запечатлеть ускользающую красоту одного из местных чудес природы.`,
-    'source.name': 'Медуза',
+    source: {name: 'Медуза'},
   },
   {
     _id: 3,
-    urlToImage: 'https://storge.pic2.me/upload/695/583bf626ef88f.jpg',
-    publishedAt: '23 августа, 2019',
+    urlToImage: 'https://avatars.mds.yandex.net/get-pdb/25978/f398fbad-a3ff-41b4-97dd-746d22a8230c/s1200?webp=false',
+    publishedAt: '2020-06-14T16:14:45Z',
     title: '«Первозданнаяваываыва тайга»: новый фотопроект Игоря Шпиленка',
     description: `Знаменитый фотограф снимает первозданные леса России, чтобы рассказать о необходимости их сохранения. 
     В этот раз он отправился в Двинско-Пинежскую тайгу, где Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
     Iste, nihil!`,
-    'source.name': 'Медуза',
+    source: {name: 'Медуза'},
   },
   {
     _id: 4,
@@ -40,7 +40,7 @@ const initialCards = [
     title: 'Национальное достояние – парки',
     description: `В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система 
     национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.`,
-    'source.name': 'Лента.ру',
+    source: {name: 'Лента.ру'},
   },
   {
     _id: 5,
@@ -49,7 +49,7 @@ const initialCards = [
     title: 'Лесные огоньки: история одной фотографии',
     description: `Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы 
     запечатлеть ускользающую красоту одного из местных чудес природы.`,
-    'source.name': 'Медуза',
+    source: {name: 'Медуза'},
   },
   {
     _id: 6,
@@ -59,7 +59,7 @@ const initialCards = [
     description: `Знаменитый фотограф снимает первозданные леса России, чтобы рассказать о необходимости их сохранения.
     В этот раз он отправился в Двинско-Пинежскую тайгу, где Lorem ipsum dolor sit amet, consectetur adipisicing elit.
     Iste, nihil!`,
-    'source.name': 'Медуза',
+    source: {name: 'Медуза'},
   },
   {
     _id: 7,
@@ -69,7 +69,7 @@ const initialCards = [
     description: `Знаменитый фотограф снимает первозданные леса России, чтобы рассказать о необходимости их сохранения.
     В этот раз он отправился в Двинско-Пинежскую тайгу, где Lorem ipsum dolor sit amet, consectetur adipisicing elit.
     Iste, nihil!`,
-    'source.name': 'Медуза',
+    source: {name: 'Медуза'},
   },
   {
     _id: 8,
@@ -79,7 +79,7 @@ const initialCards = [
     description: `Знаменитый фотограф снимает первозданные леса России, чтобы рассказать о необходимости их сохранения.
     В этот раз он отправился в Двинско-Пинежскую тайгу, где Lorem ipsum dolor sit amet, consectetur adipisicing elit.
     Iste, nihil!`,
-    'source.name': 'Медуза',
+    source: {name: 'Медуза'},
   },
 ];
 
