@@ -69,7 +69,6 @@ function clickHandler(e) {
   }
 
   if (e.target.matches('.result__showmore')) {
-    console.log('показал новые карты');
     cardList.render(store.savedArticles, {type: 'saved', show: 'more'});
   }
 }
