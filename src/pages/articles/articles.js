@@ -7,7 +7,9 @@ import ApiFetch from '../../scripts/api/apiFetch';
 import SavedBlock from "../../scripts/saved";
 import {store, storeMethods} from "../../scripts/commonReduser";
 
-const api = new ApiFetch('http://localhost:3000/v1');
+// const api = new ApiFetch('http://localhost:4000/v1');
+const api = new ApiFetch('https://api.like-news.ga/v1');
+
 
 const constants = {...store.constants};
 
