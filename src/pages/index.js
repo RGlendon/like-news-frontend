@@ -10,7 +10,8 @@ import ApiNews from "../scripts/api/apiNews";
 import {store, storeMethods} from "../scripts/commonReduser";
 
 const apiNews = new ApiNews();
-const api = new ApiFetch('http://localhost:3000/v1');
+// const api = new ApiFetch('http://localhost:4000/v1');
+const api = new ApiFetch('https://api.like-news.ga/v1');
 
 const constants = {...store.constants};
 

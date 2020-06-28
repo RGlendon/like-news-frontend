@@ -47,7 +47,9 @@ export default class Menu {
 
   _chooseCurrentLink() {
     let currentPath = window.location.pathname;
-    return (currentPath === '/index.html' || currentPath === '/') ? this.mainLink : this.savedArticlesLink;
+    console.log(currentPath)
+    // return (currentPath === '/index.html' || currentPath === '/') ? this.mainLink : this.savedArticlesLink;
+    return (currentPath.endsWith('/index.html') || currentPath.endsWith('/')) ? this.mainLink : this.savedArticlesLink;
   }
 
   _activateLink() {
