@@ -11,6 +11,11 @@
 
   outline: none;
   border-radius: 100px;
+  /*перезапись popup__input*/
+  /*margin: 0;*/
+  /*font-family: inherit;*/
+  /*font-size: inherit;*/
+  /*line-height: inherit;*/
 }
 
 .search__input::placeholder {
@@ -21,6 +26,8 @@
   line-height: 22px;
 
   color: var(--color-gray-text);
+  /*перезапись popup__input*/
+  /*opacity: 1;*/
 }
 
 
@@ -28,6 +35,13 @@
   .search__input {
     height: 56px;
     padding: 0 38% 0 5.5%;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .search__input {
+    /*height: 56px;*/
+    padding: 0 5.5%;
   }
 }
 

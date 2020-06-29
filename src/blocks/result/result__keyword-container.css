@@ -1,0 +1,22 @@
+.result__keyword-container {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+
+  height: 40px;
+  display: flex;
+}
+
+@media all and (max-width: 1440px) {
+  .result__keyword-container {
+    top: calc(8px + (24 - 8)*(100vw - 768px)/(1440 - 768));
+    left: calc(8px + (24 - 8)*(100vw - 768px)/(1440 - 768));
+  }
+}
+
+@media all and (max-width: 768px) {
+  .result__keyword-container {
+    top: 8px;
+    left: 8px;
+  }
+}

@@ -20,6 +20,13 @@
   }
 }
 
+@media all and (max-width: 600px) {
+  .search__form {
+    /*margin-top: 122px;*/
+    height: fit-content;
+  }
+}
+
 @media all and (max-width: 320px) {
   .search__form {
     margin-top: 122px;

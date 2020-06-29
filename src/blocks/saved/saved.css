@@ -1,0 +1,35 @@
+@import url(./saved__title.css);
+@import url(./saved__count.css);
+@import url(./saved__keywords.css);
+@import url(./saved__keywords-content.css);
+
+
+.saved {
+  padding-top: 40px;
+  padding-bottom: 56px;
+
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+@media all and (max-width: 1440px) {
+  .saved {
+    padding-top: calc(24px + (40 - 24)*(100vw - 768px)/(1440- 768));
+    padding-bottom: calc(32px + (56 - 32)*(100vw - 768px)/(1440- 768));
+  }
+}
+
+@media all and (max-width: 768px) {
+  .saved {
+    padding-top: calc(8px + (24 - 8)*(100vw - 320px)/(768- 320));
+    padding-bottom: 32px;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .saved {
+    padding-top: 8px;
+  }
+}

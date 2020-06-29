@@ -9,14 +9,23 @@
   padding-top: 5px;
 
 
-
-  stroke: var(--color-gray-text);
-  fill: none;
   transition: all .3s linear;
 }
 
-.result__bookmark:hover {
+
+
+.result__bookmark_save {
+  stroke: var(--color-gray-text);
+  fill: none;
+}
+
+.result__bookmark_delete {
+  fill: var(--color-gray-text);
+}
+
+.result__bookmark_restore {
   stroke: var(--color-main-primary);
+  fill: var(--color-main-primary);
 }
 
 .result__bookmark_marked {

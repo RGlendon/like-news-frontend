@@ -1,4 +1,5 @@
 @import url(root__section.css);
+@import url(../common/elem-hidden.css);
 
 .root {
   -webkit-font-smoothing: antialiased;
