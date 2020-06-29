@@ -13,6 +13,16 @@
   }
 }
 
+@media all and (max-width: 600px) {
+  .search__button {
+    width: 100%;
+
+    height: 56px;
+    margin-top: 16px;
+    position: static;
+  }
+}
+
 @media all and (max-width: 320px) {
   .search__button {
     width: 100%;

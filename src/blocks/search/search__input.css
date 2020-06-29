@@ -38,6 +38,13 @@
   }
 }
 
+@media all and (max-width: 600px) {
+  .search__input {
+    /*height: 56px;*/
+    padding: 0 5.5%;
+  }
+}
+
 @media all and (max-width: 320px) {
   .search__input {
     height: 56px;
