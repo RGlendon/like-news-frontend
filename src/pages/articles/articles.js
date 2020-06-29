@@ -77,7 +77,7 @@ function clickHandler(e) {
 
 function keydownHandler(e) {
   if (menu.header.matches('.header_menu-is-opened') && e.key === "Escape") {
-    menu.close();
+    menu.closeWhiteMenu();
   }
 }
 
