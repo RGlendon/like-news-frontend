@@ -25,7 +25,7 @@
   }
 }
 
-@media all and (max-width: 350px) {
+@media all and (max-width: 405px) {
   .result__cards {
     grid-template-columns: 1fr;
   }
