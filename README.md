@@ -18,6 +18,7 @@ _frontend для дипломного проекта like-news-browser_
  
 ### Локальный запуск
 настроить и запустить сервер https://github.com/RGlendon/like-news-api
+
 запустить клиент:
 ```
 npm install --package-lock.json
